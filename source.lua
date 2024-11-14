@@ -6,6 +6,7 @@ by Nebula Softworks
 Main Credits
 
 Hunter (Nebula Softworks) | Designing And Programming | Main Developer
+JustHey | Sigma Bug Helper/Fixer Like Omg he's a damn gift from heaven
 Inori | Configurations
 Wally | Dragging And Certain Functions
 Sirius | PCall Parsing, Notifications, Slider And Color Picker
