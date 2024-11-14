@@ -27,28 +27,28 @@ local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-S
 Sadly, Unlike Older Projects, Luna Can't Have Multiple Windows. But It's Fine! Right?
 ```lua
 local Window = Luna:CreateWindow({
-		Name = "Luna Example Window", -- This Is Title Of Your Window
-		LogoID = "82795327169782", -- The Asset ID of your logo. Set to nil if you do not have a logo for Luna to use.
-		LoadingEnabled = true, -- Whether to enable the loading animation. Set to false if you do not want the loading screen or have your own custom one.
-		LoadingTitle = "Luna Interface Suite", -- Header for loading screen
-		LoadingSubtitle = "by Nebula Softworks", -- Subtitle for loading screen
+	Name = "Luna Example Window", -- This Is Title Of Your Window
+	LogoID = "82795327169782", -- The Asset ID of your logo. Set to nil if you do not have a logo for Luna to use.
+	LoadingEnabled = true, -- Whether to enable the loading animation. Set to false if you do not want the loading screen or have your own custom one.
+	LoadingTitle = "Luna Interface Suite", -- Header for loading screen
+	LoadingSubtitle = "by Nebula Softworks", -- Subtitle for loading screen
 
-		ConfigSettings = {
-			RootFolder = nil, -- If you have multiple games for ur hub, set this to ur hub name so there will be different config 
-			-- folders for each game script. otherwsie, this is unnessecary
-			ConfigFolder = "Example Script"
-		},
+	ConfigSettings = {
+		RootFolder = nil, -- If you have multiple games for ur hub, set this to ur hub name so there will be different config 
+		-- folders for each game script. otherwsie, this is unnessecary
+		ConfigFolder = "Example Script"
+	},
 
-		KeySystem = false, -- This is still WIP and Luna Will Not use this in the current build. 
-		KeySettings = {
-			Title = "Luna Example Key",
-			Subtitle = "Key System",
-			Note = "Best Key System Ever! Also, Please Use A HWID Keysystem like Pelican, Luarmor etc. that provide key strings based on your HWID since putting a simple string is very easy to bypass",
-			FileName = "Key", -- the name of the key file. this will be saved in ur RootFolder. However, if you don't have one, it'll save in ur config folder instead
-			SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-			KeyLink = "", -- put the site where users will get your key here
-			Key = {"Example Key"} -- List of keys that will be accepted by the system, please use a system like Pelican or Luarmor that provide key strings based on your HWID since putting a simple string is very easy to bypass
-		}
+	KeySystem = false, -- This is still WIP and Luna Will Not use this in the current build. 
+	KeySettings = {
+		Title = "Luna Example Key",
+		Subtitle = "Key System",
+		Note = "Best Key System Ever! Also, Please Use A HWID Keysystem like Pelican, Luarmor etc. that provide key strings based on your HWID since putting a simple string is very easy to bypass",
+		FileName = "Key", -- the name of the key file. this will be saved in ur RootFolder. However, if you don't have one, it'll save in ur config folder instead
+		SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+		KeyLink = "", -- put the site where users will get your key here
+		Key = {"Example Key"} -- List of keys that will be accepted by the system, please use a system like Pelican or Luarmor that provide key strings based on your HWID since putting a simple string is very easy to bypass
+	}
 })
 ```
 
@@ -61,10 +61,10 @@ Simply grab the name of your icon and paste it into the icon parameter. Make sur
 This will show u how to create the instance of a tab. I reccomend storing them in a table but it is fine for the docs.
 ```lua
 local Tab = Window:CreateTab({
-			Name = "Tab Example",
-			Icon = "view_in_ar",
-			ImageSource = "Material",
-			ShowTitle = true -- This will determine whether the big header text in the tab will show
+	Name = "Tab Example",
+	Icon = "view_in_ar",
+	ImageSource = "Material",
+	ShowTitle = true -- This will determine whether the big header text in the tab will show
 })
 ```
 
@@ -94,10 +94,10 @@ Luna:Destroy()
 #### Notifying The User (Notifications)
 ```lua
 Luna:Notification({ 
-		Title = "Luna Notification Example",
-		Icon = "notifications_active",
-		ImageSource = "Material",
-		Content = "This Is A Preview Of Luna's Dynamic Notification System Entailing Estimated/Calculated Wait Times, A Sleek Design, Icons, And A Glassmorphic Look"
+	Title = "Luna Notification Example",
+	Icon = "notifications_active",
+	ImageSource = "Material",
+	Content = "This Is A Preview Of Luna's Dynamic Notification System Entailing Estimated/Calculated Wait Times, A Sleek Design, Icons, And A Glassmorphic Look"
 })
 ```
 
@@ -109,25 +109,25 @@ Luna:Notification({
 #### Creating A Button
 ```lua
 local Button = Tab:CreateButton({
-		Name = "Button Example!",
-		Description = nil -- Creates A Description For Users to know what the button does (looks bad if you use it all the time),
-    Callback = function()
+	Name = "Button Example!",
+	Description = nil -- Creates A Description For Users to know what the button does (looks bad if you use it all the time),
+    	Callback = function()
          -- The function that takes place when the button is pressed
-    end
+    	end
 })
 ```
 
 #### Creating A Toggle
 ```lua
 local Toggle = Tab:CreateToggle({
-		Name = "Toggle Example",
-		Description = nil,
-		CurrentValue = false,
-		Flag = "Toggle", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(Value)
-       -- The function that takes place when the toggle is switched
-       -- The variable (Value) is a boolean on whether the toggle is true or false
-    end
+	Name = "Toggle Example",
+	Description = nil,
+	CurrentValue = false,
+	Flag = "Toggle", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    	Callback = function(Value)
+       	 -- The function that takes place when the toggle is switched
+       	 -- The variable (Value) is a boolean on whether the toggle is true or false
+    	end
 })
 ```
 
@@ -138,15 +138,15 @@ local Toggle = Tab:CreateToggle({
 #### Creating A Slider
 ```lua
 local Slider = Tab:CreateSlider({
-		Name = "Slider Example",
-		Range = {0, 200}, -- The Minimum And Maximum Values Respectively
-		Increment = 5, -- Basically The Changing Value/Rounding Off
-		CurrentValue = 100, -- The Starting Value
-		Flag = "Slider", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(Value)
-       -- The function that takes place when the slider changes
-       -- The variable (Value) is a number which correlates to the value the slider is currently at
-    end
+	Name = "Slider Example",
+	Range = {0, 200}, -- The Minimum And Maximum Values Respectively
+	Increment = 5, -- Basically The Changing Value/Rounding Off
+	CurrentValue = 100, -- The Starting Value
+	Flag = "Slider", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    	Callback = function(Value)
+       	 -- The function that takes place when the slider changes
+       	 -- The variable (Value) is a number which correlates to the value the slider is currently at
+    	end
 })
 ```
 
@@ -156,17 +156,17 @@ local Slider = Tab:CreateSlider({
 > We Are Looking In This Problem And We Will Fix It As Soon As Possible
 ```lua
 local Input = Tab:CreateInput({
-		Name = "Dynamic Input Example",
-		Description = nil,
-		PlaceholderText = "Input Placeholder",
-		CurrentValue = "", -- the current text
-		Numeric = false, -- When true, the user may only type numbers in the box (Example walkspeed)
-		MaxCharacters = nil, -- if a number, the textbox length cannot exceed the number
-		Enter = false, -- When true, the callback will only be executed when the user presses enter.
-    Callback = function(Text)
-       -- The function that takes place when the input is changed
-       -- The variable (Text) is a string for the value in the text box
-    end
+	Name = "Dynamic Input Example",
+	Description = nil,
+	PlaceholderText = "Input Placeholder",
+	CurrentValue = "", -- the current text
+	Numeric = false, -- When true, the user may only type numbers in the box (Example walkspeed)
+	MaxCharacters = nil, -- if a number, the textbox length cannot exceed the number
+	Enter = false, -- When true, the callback will only be executed when the user presses enter.
+    	Callback = function(Text)
+       	 -- The function that takes place when the input is changed
+	 -- The variable (Text) is a string for the value in the text box
+    	end
 })
 ```
 
@@ -175,17 +175,17 @@ local Input = Tab:CreateInput({
 > If SpecialType equals Player, then the dropdown options will be the list of players
 ```lua
 local Dropdown = Tab:CreateDropdown({
-		Name = "Dropdown Example",
-    Description = nil,
-    Options = {"Option 1","Option 2"},
-    CurrentOption = {"Option 1"},
-    MultipleOptions = false,
-    SpecialType = nil,
-    Flag = "Dropdown", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(Options)
-     -- The function that takes place when the selected option is changed
-     -- If MultipleOptions is true then The variable (Options) is a table of strings for the current selected options. Else, it is a string of the currentoption
-    end
+	Name = "Dropdown Example",
+    	Description = nil,
+	Options = {"Option 1","Option 2"},
+    	CurrentOption = {"Option 1"},
+    	MultipleOptions = false,
+    	SpecialType = nil,
+	Flag = "Dropdown", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    	Callback = function(Options)
+     	 -- The function that takes place when the selected option is changed
+    	 -- If MultipleOptions is true then The variable (Options) is a table of strings for the current selected options. Else, it is a string of the currentoption
+	end
 })
 ```
 
@@ -218,15 +218,15 @@ ElementName:Destroy()
 #### Creating A Keybind
 ```lua
 local Bind = TabCreateBind({
-		Name = "Bind Example",
-		Description = nil,
-		CurrentKeybind = "Q", -- Check Roblox Studio Docs For KeyCode Names
-		HoldToInteract = false, -- When true, Instead of toggling, You hold to achieve the active state of the Bind
-    Flag = "Bind",
-    Callback = function(BindState)
-     -- The function that takes place when the keybind is pressed
-     -- The variable (BindState) is a boolean for whether the Bind is being held or not (HoldToInteract needs to be true) OR it is whether the Bind is active
-    end
+	Name = "Bind Example",
+	Description = nil,
+	CurrentKeybind = "Q", -- Check Roblox Studio Docs For KeyCode Names
+	HoldToInteract = false, -- When true, Instead of toggling, You hold to achieve the active state of the Bind
+    	Flag = "Bind",
+    	Callback = function(BindState)
+     	 -- The function that takes place when the keybind is pressed
+     	 -- The variable (BindState) is a boolean for whether the Bind is being held or not (HoldToInteract needs to be true) OR it is whether the Bind is active
+    	end
 })
 ```
 #### Updating Binded Keys
@@ -257,8 +257,8 @@ ElementName:Destroy()
 #### Creating A Label
 ```lua
 local Label = Tab:CreateLabel({
-		Text = "Label Example",
-		Style = 1 -- Luna Labels Have 3 Styles : A Basic Label, A Green Information Label and A Red Warning Label. Look At The Following Image For More Details
+	Text = "Label Example",
+	Style = 1 -- Luna Labels Have 3 Styles : A Basic Label, A Green Information Label and A Red Warning Label. Look At The Following Image For More Details
 })
 ```
 > [!TIP]
@@ -268,8 +268,8 @@ local Label = Tab:CreateLabel({
 #### Creating A Paragraph
 ```lua
 local Paragraph = Tab:CreateParagraph({
-		Title = "Paragraph Example ",
-		Text = "This Is A Paragraph. You Can Type Very Long Strings Here And They'll Automatically Fit! This Counts As A Description Right? Right? Right? Right? Right? Right? Right? Right? Right? Right? Right? Right? Right? Right? Right? Also Did I Mention This Has Rich Text? Also Did I Mention This Has Rich Text? Also Did I Mention This Has Rich Text? Also Did I Mention This Has Rich Text? Also Did I Mention This Has Rich Text? Also Did I Mention This Has Rich Text?"
+	Title = "Paragraph Example ",
+	Text = "This Is A Paragraph. You Can Type Very Long Strings Here And They'll Automatically Fit! This Counts As A Description Right? Right? Right? Right? Right? Right? Right? Right? Right? Right? Right? Right? Right? Right? Right? Also Did I Mention This Has Rich Text? Also Did I Mention This Has Rich Text? Also Did I Mention This Has Rich Text? Also Did I Mention This Has Rich Text? Also Did I Mention This Has Rich Text? Also Did I Mention This Has Rich Text?"
 })
 ```
 
