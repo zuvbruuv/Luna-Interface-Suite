@@ -294,14 +294,14 @@ ElementName:Destroy()
 ## Extras
 ### Credits
 
-Main Developers
+Main Developers:
 `hunter` - Lead/Main Developer, UI Designing, Some Programming, Documentation, and Logo
 `JustHey` - Co Developer, Major Bug Fixing, Configuration Handling
 Wally - Dragging And Certain Other Mechanics
 Inori - Configurations
 `shlexr and iRay` -  Rayfield (PCall Parsing, Notifications, Slider)
 
-Helpers/Side Developers
+Helpers/Side Developers:
 `Throit` - Color Picker
 `Tarmac and qweery` - Icon Modules
 kirill9655 - Loading Circle and Certain Images
