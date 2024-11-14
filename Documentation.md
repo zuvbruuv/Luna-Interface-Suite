@@ -1,12 +1,12 @@
 # Introduction
 This Documentation Is Last Updated for Prerelease Beta 2.1
 ## Why Choose Luna?
-  Reliable And Stable\n
-  Beautful Design\n
-  Open Sourced\n
-  Amazing Features like key system, custom configs, prebuilt tabs and more!\n
-  Smooth And Excellent Performance\n
-
+  Reliable And Stable  
+  Beautful Design  
+  Open Sourced  
+  Amazing Features like key system, custom configs, prebuilt tabs and more!  
+  Smooth And Excellent Performance  
+  
 Now Let's Get Started, Shall We?
 
 **Also hope shlex will add this docs.sirius.menu but its fine here lol**
@@ -296,18 +296,18 @@ ElementName:Destroy()
 ## Extras
 ### Credits
 
-Main Developers: 
- `hunter` - Lead/Main Developer, UI Designing, Some Programming, Documentation, and Logo |
- `JustHey` - Co Developer, Major Bug Fixing, Configuration Handling |
- Wally - Dragging And Certain Other Mechanics |
- Inori - Configurations |
- `shlexr and iRay` -  Rayfield (PCall Parsing, Notifications, Slider) 
-
-Helpers/Side Developers:
- `Throit` - Color Picker |
- `Tarmac and qweery` - Icon Modules |
- kirill9655 - Loading Circle and Certain Images |
- Sirius Discord Members - Feedback, Suggestions And Testers 
+Main Developers:  
+ `hunter` - Lead/Main Developer, UI Designing, Some Programming, Documentation, and Logo  
+ `JustHey` - Co Developer, Major Bug Fixing, Configuration Handling  
+ Wally - Dragging And Certain Other Mechanics  
+ Inori - Configurations  
+ `shlexr and iRay` -  Rayfield (PCall Parsing, Notifications, Slider)  
+  
+Helpers/Side Developers:  
+ `Throit` - Color Picker  
+ `Tarmac and qweery` - Icon Modules  
+ kirill9655 - Loading Circle and Certain Images  
+ Sirius Discord Members - Feedback, Suggestions And Testers  
 
 > [!NOTE]
 > If Your Name Is in a `box like this`, it means you contributed a lot.
