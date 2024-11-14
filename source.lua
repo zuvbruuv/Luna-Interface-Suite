@@ -17,6 +17,7 @@ Extra Credits / Provided Certain Elements
 Throit | Color Picker
 Tarmac and qweery | Lucide Icons And Material Icons
 kirill9655 | Loading Circle
+Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
