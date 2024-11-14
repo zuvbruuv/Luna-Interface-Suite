@@ -263,7 +263,7 @@ local Label = Tab:CreateLabel({
 ```
 > [!TIP]
 > Here Are The Styles For Labels
-> ![Label Styles](https://github.com/user-attachments/assets/9cfc01c7-3017-43a6-a732-6249ffb51993)
+![Label Styles](https://github.com/user-attachments/assets/9cfc01c7-3017-43a6-a732-6249ffb51993)
 
 #### Creating A Paragraph
 ```lua
