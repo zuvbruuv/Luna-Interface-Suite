@@ -2414,14 +2414,14 @@ end
 
 if gethui then
 	for _, Interface in ipairs(gethui():GetChildren()) do
-		if Interface.Name == Luna.Name and Interface ~= Luna then
+		if Interface.Name == LunaUI.Name and Interface ~= LunaUI then
 			Interface.Enabled = false
 			Interface.Name = "Luna-Old"
 		end
 	end
 elseif not isStudio then
 	for _, Interface in ipairs(CoreGui:GetChildren()) do
-		if Interface.Name == Luna.Name and Interface ~= Luna then
+		if Interface.Name == LunaUI.Name and Interface ~= LunaUI then
 			Interface.Enabled = false
 			Interface.Name = "Luna-Old"
 		end
