@@ -1,11 +1,11 @@
 # Introduction
 This Documentation Is Last Updated for Prerelease Beta 2.1
 ## Why Choose Luna?
-  Reliable And Stable  
-  Beautful Design  
-  Open Sourced  
-  Amazing Features like key system, custom configs, prebuilt tabs and more!  
-  Smooth And Excellent Performance  
+	Reliable And Stable  
+	Beautful Design  
+  	Open Sourced  
+  	Amazing Features like key system, custom configs, prebuilt tabs and more!  
+  	Smooth And Excellent Performance  
   
 Now Let's Get Started, Shall We?
 
