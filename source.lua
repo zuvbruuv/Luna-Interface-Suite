@@ -2402,14 +2402,14 @@ end
 local LunaUI = isStudio and script.Parent or game:GetObjects("rbxassetid://86467455075715")[1]
 
 if gethui then
-	Luna.Parent = gethui()
+	LunaUI.Parent = gethui()
 elseif syn and syn.protect_gui then 
-	syn.protect_gui(Luna)
-	Luna.Parent = CoreGui
+	syn.protect_gui(LunaUI)
+	LunaUI.Parent = CoreGui
 elseif not isStudio and CoreGui:FindFirstChild("RobloxGui") then
-	Luna.Parent = CoreGui:FindFirstChild("RobloxGui")
+	LunaUI.Parent = CoreGui:FindFirstChild("RobloxGui")
 elseif not isStudio then
-	Luna.Parent = CoreGui
+	LunaUI.Parent = CoreGui
 end
 
 if gethui then
