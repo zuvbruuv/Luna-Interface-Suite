@@ -38,7 +38,7 @@ local Camera = workspace.CurrentCamera
 local CoreGui = game:GetService("CoreGui")
 
 local isStudio
-local website = "docs.nebula.client"
+local website = ""
 
 -- Credits To Tarmac And qweery for Lucide And Material Icons Respectively.
 local IconModule = {
