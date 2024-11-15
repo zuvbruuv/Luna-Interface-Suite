@@ -58,8 +58,8 @@ local Window = Luna:CreateWindow({
 
 #### Luna Icons
 Luna Uses Custom Icons so u do not have to find ans upload your own!
-We have 2 sources ; [Lucide](https://lucide.dev) and [Material](https://fonts.google.com/icons?icon.query=home&icon.set=Material+Icons&icon.style=Sharp).
-Simply grab the name of your icon and paste it into the icon parameter. If you're using Lucide, replace spaces with dashes (-) and if you're on Material, replace spaces with underscores (_)
+We have 2 sources ; [Lucide](https://lucide.dev) and [Material](https://fonts.google.com/icons?icon.query=home&icon.set=Material+Icons&icon.style=Sharp).  
+Simply grab the name of your icon and paste it into the icon parameter. If you're using Lucide, replace spaces with dashes (-) and if you're on Material, replace spaces with underscores (_)  
 Make sure to change ImageSource to the source you're using.
 
 #### Creating A Tab
@@ -107,9 +107,9 @@ Luna:Notification({
 ```
 
 > [!TIP]
-> While You Can Do Element.Callback = function() ... end when creating the element, I Reccomend using :Set() to set the callback after creating Your UI
-> It is better to seperate Interface and functionallity however it is your opinion
-> All Elements Except Color Picker And Slider Have Description Options, however overusing them can make your UI look weird.
+> While You Can Do Element.Callback = function() ... end when creating the element, I Reccomend using :Set() to set the callback after creating Your UI  
+> It is better to seperate Interface and functionallity however it is your opinion  
+> All Elements Except Color Picker And Slider Have Description Options, however overusing them can make your UI look weird.  
 
 #### Creating A Button
 ```lua
@@ -167,7 +167,7 @@ local Slider = Tab:CreateSlider({
 
 #### Creating A Dynamic Input (Adaptive Input AKA Textbox)
 > [!WARNING]
-> For Some Reason Set Doesnt work on CurrentValue/Text ; the event doesnt fire. 
+> For Some Reason Set Doesnt work on CurrentValue/Text ; the event doesnt fire.  
 > We Are Looking In This Problem And We Will Fix It As Soon As Possible
 ```lua
 local Input = Tab:CreateInput({
@@ -186,8 +186,8 @@ local Input = Tab:CreateInput({
 ```
 
 #### Creating A Dropdown Menu
-> Currently, The Only Special Type is Player.
-> If SpecialType equals Player, then the dropdown options will be the list of players
+> Currently, The Only Special Type is Player.  
+> If SpecialType equals Player, then the dropdown options will be the list of players  
 ```lua
 local Dropdown = Tab:CreateDropdown({
 	Name = "Dropdown Example",
@@ -206,8 +206,8 @@ local Dropdown = Tab:CreateDropdown({
 
 #### Updating And Element Plus Universal Features
 > [!IMPORTANT]
-> For Any Of These To Work, The Element Needs to be defined as a variable
-
+> For Any Of These To Work, The Element Needs to be defined as a variable  
+  
 To Access An Element's Values, you can simply do:
 ```lua
 ElementName.Settings
@@ -245,8 +245,8 @@ local Bind = TabCreateBind({
 })
 ```
 #### Updating Binded Keys
-Updating Binded Keys Is The Same As Updating Other Elements
-To Access An Element's Values, you can simply do:
+Updating Binded Keys Is The Same As Updating Other Elements  
+To Access An Element's Values, you can simply do:  
 ```lua
 ElementName.Settings
 ```
@@ -290,7 +290,7 @@ local Paragraph = Tab:CreateParagraph({
 ```
 
 #### Updating Textual Elements
-They are the same as regular elements.
+They are the same as regular elements.  
 To Access An Element's Values, you can simply do:
 ```lua
 ElementName.Settings
