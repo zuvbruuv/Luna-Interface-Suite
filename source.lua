@@ -6,7 +6,6 @@ by Nebula Softworks
 Main Credits
 
 Hunter (Nebula Softworks) | Designing And Programming | Main Developer
-JustHey | Sigma Bug Helper/Fixer and Config System Creator Like Omg he's a damn gift from heaven | Co-Developer
 Inori | Configurations
 Wally | Dragging And Certain Functions
 Sirius | PCall Parsing, Notifications, Slider And Color Picker
@@ -19,10 +18,11 @@ Throit | Color Picker
 Tarmac and qweery | Lucide Icons And Material Icons
 kirill9655 | Loading Circle
 Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
+Sirius Discord | Testers (thanks shlex lmao)
 
 ]]
 
-local Release = "Prerelease Beta 2"
+local Release = "Prerelease Beta 3"
 local RootFolder = "Luna Workspace"
 local ConfigurationFolder = RootFolder.."/Configurations"
 local ConfigurationExtension = ".luna"
@@ -40,7 +40,7 @@ local Camera = workspace.CurrentCamera
 local CoreGui = game:GetService("CoreGui")
 
 local isStudio
-local website = ""
+local website = "github.com/Nebula-Softworks"
 
 -- Credits To Tarmac And qweery for Lucide And Material Icons Respectively.
 local IconModule = {
@@ -2394,13 +2394,14 @@ local function UnpackColor(Color)
 end
 
 function tween(object, goal, callback, tweenin)
-	local tween = TweenService:Create(object,tweenin or tweeninfo, goal)
+	local tween = TweenService:Create(object, tweenin or tweeninfo, goal)
 	tween.Completed:Connect(callback or function() end)
 	tween:Play()
 end
 
 -- Interface Management
-local LunaUI = isStudio and script.Parent or game:GetObjects("rbxassetid://86467455075715")[1]
+local LunaUI = isStudio and script.Parent:WaitForChild("Luna UI") or game:GetObjects("rbxassetid://86467455075715")[1]
+
 
 if gethui then
 	LunaUI.Parent = gethui()
@@ -2691,7 +2692,7 @@ local function Unhide(Window, currentTab)
 	tween(Window.Navigation.Line, {BackgroundTransparency = 0})
 
 	for _, TopbarButton in ipairs(Window.Controls:GetChildren()) do
-		if TopbarButton.ClassName == "Frame" then
+		if TopbarButton.ClassName == "Frame" and TopbarButton.Name ~= "Theme" then
 			TopbarButton.Visible = true
 			tween(TopbarButton, {BackgroundTransparency = 0.25})
 			tween(TopbarButton.UIStroke, {Transparency = 0.5})
@@ -2838,7 +2839,7 @@ function Luna:CreateWindow(WindowSettings)
 		wait(0.3)
 		TweenService:Create(LoadingFrame, TweenInfo.new(0.5, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
 	end
-	TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {BackgroundTransparency = 0.45}):Play()
+	TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {BackgroundTransparency = 0.35}):Play()
 	wait(0.4)
 	LoadingFrame.Visible = false
 
@@ -3568,7 +3569,7 @@ function Luna:CreateWindow(WindowSettings)
 
 
 			Bind.BindFrame.BindBox.Text = BindSettings.CurrentBind
-			Bind.BindFrame.BindBox.Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 16, 0, 42)
+			Bind.BindFrame.BindBox.Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 22, 0, 42)
 
 			Bind.BindFrame.BindBox.Focused:Connect(function()
 				CheckingForKey = true
@@ -3671,7 +3672,7 @@ function Luna:CreateWindow(WindowSettings)
 			end)
 
 			Bind.BindFrame.BindBox:GetPropertyChangedSignal("Text"):Connect(function()
-				TweenService:Create(Bind.BindFrame, TweenInfo.new(0.55, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 16, 0, 30)}):Play()
+				TweenService:Create(Bind.BindFrame, TweenInfo.new(0.55, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 22, 0, 30)}):Play()
 			end)
 
 			function BindV:Set(NewBindSettings)
@@ -4050,7 +4051,7 @@ function Luna:CreateWindow(WindowSettings)
 				end
 
 				Input.InputFrame.InputBox:CaptureFocus()
-				Input.InputFrame.InputBox.Text = InputSettings.CurrentValue
+				Input.InputFrame.InputBox.Text = tostring(InputSettings.CurrentValue)
 				Input.InputFrame.InputBox:ReleaseFocus()
 				Input.InputFrame.InputBox.Size = UDim2.new(0, Input.InputFrame.InputBox.TextBounds.X + 52, 0, 42)
 
@@ -4140,7 +4141,7 @@ function Luna:CreateWindow(WindowSettings)
 					TweenService:Create(Dropdown, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(32, 30, 38)}):Play()
 					TweenService:Create(Dropdown.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
 				end
-				if Success then
+				if Success and c2 then
 					c2()
 				end
 			end
@@ -4374,17 +4375,226 @@ function Luna:CreateWindow(WindowSettings)
 		end
 		
 		-- Color Picker
-		function Tab:CreateColorPicker(ColorPickerSettings)
-			print("Not In PBeta 2.")
-			Luna:Notification({Title = "Color Picker", Content = "The Color Picker is not In The Current Release ("..Release.."). Please Make Sure Your Luna is the official loadstring. If it is, please try again in the next update", Icon = "color_lens"})
-			return "Not in PBeta 2"
+		function Tab:CreateColorPicker(ColorPickerSettings) -- by Rayfield/Throit
+			
+			ColorPickerSettings = Kwargify({
+				Name = "Color Picker",
+				Color = Color3.fromRGB(255,255,255),
+				Flag = "ColorPicker", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+				Callback = function(Value)
+					-- The function that takes place every time the color picker is moved/changed
+					-- The variable (Value) is a Color3fromRGB value based on which color is selected
+				end
+			}, ColorPickerSettings or {})
+			
+			local ColorPickerV = {Settings = ColorPickerSettings}
+			
+			local closedsize = UDim2.new(0, 75, 0, 22)
+			local openedsize = UDim2.new(0, 219, 0, 129)
+			
+			local ColorPicker = Elements.Template.ColorPicker:Clone()
+			local Background = ColorPicker.CPBackground
+			local Display = Background.Display
+			local Main = Background.MainCP
+			local Slider = ColorPicker.ColorSlider
+			
+			ColorPicker.Name = ColorPickerSettings.Name
+			ColorPicker.Title.Text = ColorPickerSettings.Name
+			ColorPicker.Visible = true
+			ColorPicker.Parent = TabPage
+			ColorPicker.Size = UDim2.new(1.042, -25,0, 38)
+			Background.Size = closedsize
+			Display.BackgroundTransparency = 0
+			
+			ColorPicker["MouseEnter"]:Connect(function()
+				tween(ColorPicker.UIStroke, {Color = Color3.fromRGB(87, 84, 104)})
+			end)
+
+			ColorPicker["MouseLeave"]:Connect(function()
+				tween(ColorPicker.UIStroke, {Color = Color3.fromRGB(64,61,76)})
+			end)
+			
+			local function SafeCallback(param, c2)
+				local Success, Response = pcall(function()
+					ColorPickerSettings.Callback(param)
+				end)
+				if not Success then
+					TweenService:Create(ColorPicker, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0}):Play()
+					TweenService:Create(ColorPicker, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(85, 0, 0)}):Play()
+					TweenService:Create(ColorPicker.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
+					ColorPicker.Title.Text = "Callback Error"
+					print("Luna Interface Suite | "..ColorPickerSettings.Name.." Callback Error " ..tostring(Response))
+					wait(0.5)
+					ColorPicker.Title.Text = ColorPickerSettings.Name
+					TweenService:Create(ColorPicker, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0.5}):Play()
+					TweenService:Create(ColorPicker, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(32, 30, 38)}):Play()
+					TweenService:Create(ColorPicker.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
+				end
+				if Success and c2 then
+					c2()
+				end
+			end
+			
+			local opened = false
+			
+			local mouse = game.Players.LocalPlayer:GetMouse()
+			Main.Image = "http://www.roblox.com/asset/?id=11415645739"
+			local mainDragging = false 
+			local sliderDragging = false 
+			ColorPicker.Interact.MouseButton1Down:Connect(function()
+
+				if not opened then
+					opened = true 
+					tween(ColorPicker, {Size = UDim2.new( 1.042, -25,0, 165)}, nil, TweenInfo.new(0.6, Enum.EasingStyle.Exponential))
+					tween(Background, {Size = openedsize})
+					tween(Display, {BackgroundTransparency = 1})
+				else
+					opened = false
+					tween(ColorPicker, {Size = UDim2.new(1.042, -25,0, 38)}, nil, TweenInfo.new(0.6, Enum.EasingStyle.Exponential))
+					tween(Background, {Size = closedsize})
+					tween(Display, {BackgroundTransparency = 0})
+				end
+
+			end)
+
+			UserInputService.InputEnded:Connect(function(input, gameProcessed) if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
+					mainDragging = false
+					sliderDragging = false
+				end end)
+			Main.MouseButton1Down:Connect(function()
+				if opened then
+					mainDragging = true 
+				end
+			end)
+			Main.MainPoint.MouseButton1Down:Connect(function()
+				if opened then
+					mainDragging = true 
+				end
+			end)
+			Slider.MouseButton1Down:Connect(function()
+				sliderDragging = true 
+			end)
+			Slider.SliderPoint.MouseButton1Down:Connect(function()
+				sliderDragging = true 
+			end)
+			local h,s,v = ColorPickerSettings.Color:ToHSV()
+			local color = Color3.fromHSV(h,s,v) 
+			local hex = string.format("#%02X%02X%02X",color.R*0xFF,color.G*0xFF,color.B*0xFF)
+			ColorPicker.HexInput.InputBox.Text = hex
+			local function setDisplay()
+				--Main
+				Main.MainPoint.Position = UDim2.new(s,-Main.MainPoint.AbsoluteSize.X/2,1-v,-Main.MainPoint.AbsoluteSize.Y/2)
+				Main.MainPoint.ImageColor3 = Color3.fromHSV(h,s,v)
+				Background.BackgroundColor3 = Color3.fromHSV(h,1,1)
+				Display.BackgroundColor3 = Color3.fromHSV(h,s,v)
+				--Slider 
+				local x = h * Slider.AbsoluteSize.X
+				Slider.SliderPoint.Position = UDim2.new(0,x-Slider.SliderPoint.AbsoluteSize.X/2,0.5,0)
+				Slider.SliderPoint.ImageColor3 = Color3.fromHSV(h,1,1)
+				local color = Color3.fromHSV(h,s,v) 
+				local r,g,b = math.floor((color.R*255)+0.5),math.floor((color.G*255)+0.5),math.floor((color.B*255)+0.5)
+				ColorPicker.RInput.InputBox.Text = tostring(r)
+				ColorPicker.GInput.InputBox.Text = tostring(g)
+				ColorPicker.BInput.InputBox.Text = tostring(b)
+				hex = string.format("#%02X%02X%02X",color.R*0xFF,color.G*0xFF,color.B*0xFF)
+				ColorPicker.HexInput.InputBox.Text = hex
+			end
+			setDisplay()
+			ColorPicker.HexInput.InputBox.FocusLost:Connect(function()
+				if not pcall(function()
+						local r, g, b = string.match(ColorPicker.HexInput.InputBox.Text, "^#?(%w%w)(%w%w)(%w%w)$")
+						local rgbColor = Color3.fromRGB(tonumber(r, 16),tonumber(g, 16), tonumber(b, 16))
+						h,s,v = rgbColor:ToHSV()
+						hex = ColorPicker.HexInput.InputBox.Text
+						setDisplay()
+						ColorPickerSettings.Color = rgbColor
+					end) 
+				then 
+					ColorPicker.HexInput.InputBox.Text = hex 
+				end
+				SafeCallback(Color3.fromHSV(h,s,v))
+				local r,g,b = math.floor((h*255)+0.5),math.floor((s*255)+0.5),math.floor((v*255)+0.5)
+				ColorPickerSettings.Color = Color3.fromRGB(r,g,b)
+			end)
+			--RGB
+			local function rgbBoxes(box,toChange)
+				local value = tonumber(box.Text) 
+				local color = Color3.fromHSV(h,s,v) 
+				local oldR,oldG,oldB = math.floor((color.R*255)+0.5),math.floor((color.G*255)+0.5),math.floor((color.B*255)+0.5)
+				local save 
+				if toChange == "R" then save = oldR;oldR = value elseif toChange == "G" then save = oldG;oldG = value else save = oldB;oldB = value end
+				if value then 
+					value = math.clamp(value,0,255)
+					h,s,v = Color3.fromRGB(oldR,oldG,oldB):ToHSV()
+
+					setDisplay()
+				else 
+					box.Text = tostring(save)
+				end
+				local r,g,b = math.floor((h*255)+0.5),math.floor((s*255)+0.5),math.floor((v*255)+0.5)
+				ColorPickerSettings.Color = Color3.fromRGB(r,g,b)
+			end
+			ColorPicker.RInput.InputBox.FocusLost:connect(function()
+				rgbBoxes(ColorPicker.RInput.InputBox,"R")
+				SafeCallback(Color3.fromHSV(h,s,v))
+			end)
+			ColorPicker.GInput.InputBox.FocusLost:connect(function()
+				rgbBoxes(ColorPicker.GInput.InputBox,"G")
+				SafeCallback(Color3.fromHSV(h,s,v))
+			end)
+			ColorPicker.BInput.InputBox.FocusLost:connect(function()
+				rgbBoxes(ColorPicker.BInput.InputBox,"B")
+				SafeCallback(Color3.fromHSV(h,s,v))
+			end)
+
+			RunService.RenderStepped:connect(function()
+				if mainDragging then 
+					local localX = math.clamp(mouse.X-Main.AbsolutePosition.X,0,Main.AbsoluteSize.X)
+					local localY = math.clamp(mouse.Y-Main.AbsolutePosition.Y,0,Main.AbsoluteSize.Y)
+					Main.MainPoint.Position = UDim2.new(0,localX-Main.MainPoint.AbsoluteSize.X/2,0,localY-Main.MainPoint.AbsoluteSize.Y/2)
+					s = localX / Main.AbsoluteSize.X
+					v = 1 - (localY / Main.AbsoluteSize.Y)
+					Display.BackgroundColor3 = Color3.fromHSV(h,s,v)
+					Main.MainPoint.ImageColor3 = Color3.fromHSV(h,s,v)
+					Background.BackgroundColor3 = Color3.fromHSV(h,1,1)
+					local color = Color3.fromHSV(h,s,v) 
+					local r,g,b = math.floor((color.R*255)+0.5),math.floor((color.G*255)+0.5),math.floor((color.B*255)+0.5)
+					ColorPicker.RInput.InputBox.Text = tostring(r)
+					ColorPicker.GInput.InputBox.Text = tostring(g)
+					ColorPicker.BInput.InputBox.Text = tostring(b)
+					ColorPicker.HexInput.InputBox.Text = string.format("#%02X%02X%02X",color.R*0xFF,color.G*0xFF,color.B*0xFF)
+					SafeCallback(Color3.fromHSV(h,s,v))
+					ColorPickerSettings.Color = Color3.fromRGB(r,g,b)
+				end
+				if sliderDragging then 
+					local localX = math.clamp(mouse.X-Slider.AbsolutePosition.X,0,Slider.AbsoluteSize.X)
+					h = localX / Slider.AbsoluteSize.X
+					Display.BackgroundColor3 = Color3.fromHSV(h,s,v)
+					Slider.SliderPoint.Position = UDim2.new(0,localX-Slider.SliderPoint.AbsoluteSize.X/2,0.5,0)
+					Slider.SliderPoint.ImageColor3 = Color3.fromHSV(h,1,1)
+					Background.BackgroundColor3 = Color3.fromHSV(h,1,1)
+					Main.MainPoint.ImageColor3 = Color3.fromHSV(h,s,v)
+					local color = Color3.fromHSV(h,s,v) 
+					local r,g,b = math.floor((color.R*255)+0.5),math.floor((color.G*255)+0.5),math.floor((color.B*255)+0.5)
+					ColorPicker.RInput.InputBox.Text = tostring(r)
+					ColorPicker.GInput.InputBox.Text = tostring(g)
+					ColorPicker.BInput.InputBox.Text = tostring(b)
+					ColorPicker.HexInput.InputBox.Text = string.format("#%02X%02X%02X",color.R*0xFF,color.G*0xFF,color.B*0xFF)
+					SafeCallback(Color3.fromHSV(h,s,v))
+					ColorPickerSettings.Color = Color3.fromRGB(r,g,b)
+				end
+			end)
+
+			
+			return ColorPickerV
+			
 		end
 
 		return Tab
 	end
 	
 	Elements.Parent.Visible = true
-	tween(Elements.Parent, {BackgroundTransparency = 0.2})
+	tween(Elements.Parent, {BackgroundTransparency = 0.1})
 	Navigation.Visible = true
 	tween(Navigation.Line, {BackgroundTransparency = 0})
 	
@@ -4584,7 +4794,15 @@ if isStudio then
 		MultipleOptions = false,
 		SpecialType = nil
 	})
-	Tabs.Main:CreateColorPicker()
+	Tabs.Main:CreateColorPicker({
+		Name = "Color Picker Example",
+		Color = Color3.fromRGB(86, 171, 128),
+		Flag = "ColorPicker1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+		Callback = function(Value)
+			-- The function that takes place every time the color picker is moved/changed
+			-- The variable (Value) is a Color3fromRGB value based on which color is selected
+		end
+	})
 	
 	Tabs.Main2:CreateSection("The Elements Here Are To Show Unique Features")
 	Tabs.Main2:CreateToggle({
@@ -4633,6 +4851,12 @@ if isStudio then
 		CurrentOption = {"same here, itll be the first option"},
 		MultipleOptions = false,
 		SpecialType = "Player"
+	})
+	Tabs.Main2:CreateColorPicker({
+		Name = "Callback Error Showcase",
+		Color = Color3.fromRGB(86, 171, 128),
+		Flag = "ColorPicker1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+		Callback = ""
 	})
 end
 
