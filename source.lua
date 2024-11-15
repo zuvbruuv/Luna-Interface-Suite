@@ -21,7 +21,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 3.1b"
+local Release = "Prerelease Beta 3"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -2663,14 +2663,6 @@ local function Hide(Window, bind)
 			TweenService:Create(tabbtn.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 		end
 	end
-	for _, tabbtn in ipairs(Window.Navigation:GetChildren()) do
-		if tabbtn.ClassName == "Frame" and tabbtn.Name == "SettingsTabButton" then
-			TweenService:Create(tabbtn, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundTransparency = 1}):Play()
-			TweenService:Create(tabbtn.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {ImageTransparency = 1}):Play()
-			TweenService:Create(tabbtn.DropShadowHolder.DropShadow, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {ImageTransparency = 1}):Play()
-			TweenService:Create(tabbtn.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
-		end
-	end
 	task.wait(0.28)
 	Window.Elements.Parent.Visible = false
 	Window.Visible = false
@@ -2703,14 +2695,6 @@ local function Unhide(Window, currentTab)
 			TweenService:Create(tabbtn.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {ImageTransparency = 0}):Play()
 			TweenService:Create(tabbtn.DropShadowHolder.DropShadow, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {ImageTransparency = 1}):Play()
 			TweenService:Create(tabbtn.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
-		end
-	end
-	for _, tabbtn in ipairs(Window.Navigation:GetChildren()) do
-		if tabbtn.ClassName == "Frame" and tabbtn.Name == "SettingsTabButton" then
-			TweenService:Create(tabbtn, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundTransparency = 1}):Play()
-			TweenService:Create(tabbtn.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {ImageTransparency = 0}):Play()
-			TweenService:Create(tabbtn.DropShadowHolder.DropShadow, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {ImageTransparency = 1}):Play()
-			TweenService:Create(tabbtn.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {Transparency = 0.41}):Play()
 		end
 	end
 
@@ -2780,10 +2764,6 @@ function Luna:CreateWindow(WindowSettings)
 	end
 
 	LoadingFrame.Visible = true
-
-	function Window:bruh()
-		task.wait(5)
-	end
 
 	-- pcall(function()
 	-- 	if not isfolder(ConfigurationFolder) then
@@ -2891,12 +2871,7 @@ function Luna:CreateWindow(WindowSettings)
 					tween(OtherTabButton.ImageLabel, {ImageColor3 = Color3.fromRGB(221,221,221)})
 					tween(OtherTabButton, {BackgroundTransparency = 1})
 				end
-			end
-			for _, SettingTabButton in ipairs(Navigation:GetChildren()) do
-				if SettingTabButton.Name == "SettingsTabButton" and SettingTabButton.ClassName == "Frame" and SettingTabButton ~= TabButton then
-					tween(SettingTabButton.ImageLabel, {ImageColor3 = Color3.fromRGB(221,221,221)})
-					tween(SettingTabButton, {BackgroundTransparency = 1})
-				end
+				
 			end
 
 			Window.CurrentTab = TabSettings.Name
