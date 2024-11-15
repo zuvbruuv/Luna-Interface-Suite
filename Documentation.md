@@ -311,7 +311,7 @@ Luna:LoadAutoloadConfig() -- this is if u want ur script to have our autoload fe
 
 Main Developers:  
  `hunter` - Lead/Main Developer, UI Designing, Some Programming, Documentation, and Logo  
- `JustHey` - Co Developer, Major Bug Fixing, Configuration Scripting
+ `JustHey` - Co Developer, Major Bug Fixing, Configuration Scripting  
  `Throit` - Color Picker  
  Wally - Dragging And Certain Other Mechanics  
  `shlexr and iRay` -  Rayfield (PCall Parsing, Notifications, Slider)  
