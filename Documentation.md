@@ -166,9 +166,6 @@ local Slider = Tab:CreateSlider({
 ```
 
 #### Creating A Dynamic Input (Adaptive Input AKA Textbox)
-> [!WARNING]
-> For Some Reason Set Doesnt work on CurrentValue/Text ; the event doesnt fire.  
-> We Are Looking In This Problem And We Will Fix It As Soon As Possible
 ```lua
 local Input = Tab:CreateInput({
 	Name = "Dynamic Input Example",
