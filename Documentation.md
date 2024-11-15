@@ -1,11 +1,11 @@
 # Introduction
 This Documentation Is Last Updated for Prerelease Beta 2.1
 ## Why Choose Luna?
-	Reliable And Stable  
-	Beautful Design  
-  	Open Sourced  
-  	Amazing Features like key system, custom configs, prebuilt tabs and more!  
-  	Smooth And Excellent Performance  
+  Reliable And Stable  
+  Beautful Design  
+  Open Sourced  
+  Amazing Features like key system, custom configs, prebuilt tabs and more!  
+  Smooth And Excellent Performance  
   
 Now Let's Get Started, Shall We?
 
@@ -133,8 +133,18 @@ local Toggle = Tab:CreateToggle({
 ```
 
 #### Creating A Color Picker
-> [!CAUTION]
-> The Color Picker Is Not Currently in the version "Prerelease Beta 2.1"
+Color Pickers Are Not Completed And May Have Minor Bugs
+```lua
+local ColorPicker = Tab::CreateColorPicker({
+	Name = "Color Picker Example",
+	Color = Color3.fromRGB(86, 171, 128),
+	Flag = "ColorPicker1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Value)
+		-- The function that takes place every time the color picker is moved/changed
+		-- The variable (Value) is a Color3fromRGB value based on which color is selected
+	end
+})
+```
 
 #### Creating A Slider
 ```lua
