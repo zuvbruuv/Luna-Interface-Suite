@@ -78,7 +78,8 @@ Section:Destroy() -- Destroys the section
 ```
 
 #### Setting Up Configuration Tab
-Saves your current UI settings
+Uses our flag system technology to save your current UI Settings
+> [!WARNING]
 > Make sure to add this on the bottom of your code!
 ```lua
 Luna:SetFolder("Luna/YourGame")
