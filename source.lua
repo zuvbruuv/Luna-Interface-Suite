@@ -6,7 +6,6 @@ by Nebula Softworks
 Main Credits
 
 Hunter (Nebula Softworks) | Designing And Programming | Main Developer
-JustHey | Configurations And Config System | Co Developer
 Inori | Configurations
 Wally | Dragging And Certain Functions
 Sirius | PCall Parsing, Notifications, Slider And Color Picker
@@ -2743,9 +2742,7 @@ function Luna:CreateWindow(WindowSettings)
         LoadingEnabled = true,
         LoadingTitle = "Luna Interface Suite",
         LoadingSubtitle = "by Nebula Softworks",
-        
-        ConfigSettings = {},
-        
+            
         KeySystem = false,
         KeySettings = {}
     }, WindowSettings or {})
@@ -4601,6 +4598,8 @@ function Luna:CreateWindow(WindowSettings)
             local inputPath = nil
             local selectedConfig = nil
         
+            Tab:CreateSection("Config Settings")
+
             Tab:CreateInput({
                 Name = "Config Name",
                 Description = "Insert a name for your to be created config.",
@@ -4613,6 +4612,7 @@ function Luna:CreateWindow(WindowSettings)
                     inputPath = input
                 end,
             })
+
 
             local configSelection = Tab:CreateDropdown({
                 Name = "Select Config",
@@ -4660,6 +4660,8 @@ function Luna:CreateWindow(WindowSettings)
                     configSelection:Set({ Options = Luna:RefreshConfigList() })
                 end
             })
+
+            Tab:CreateSection("Config Misc")
 
             Tab:CreateButton({
                 Name = "Load Config",
@@ -4803,6 +4805,35 @@ function Luna:CreateWindow(WindowSettings)
                     end
                 end
             },
+            -- ["Colorpicker"] = {
+            --     Save = function(Flag, data)
+            --         local function Color3ToHex(color)
+            --             return string.format("#%02X%02X%02X", math.floor(color.R * 255), math.floor(color.G * 255), math.floor(color.B * 255))
+            --         end
+    
+            --         return {
+            --             type = "Colorpicker", 
+            --             flag = Flag, 
+            --             color = Color3ToHex(data.Color) or nil,
+            --             alpha = data.Alpha
+            --         }
+            --     end,
+            --     Load = function(Flag, data)
+            --         local function HexToColor3(hex)
+            --             local r = tonumber(hex:sub(2, 3), 16) / 255
+            --             local g = tonumber(hex:sub(4, 5), 16) / 255
+            --             local b = tonumber(hex:sub(6, 7), 16) / 255
+            --             return Color3.new(r, g, b)
+            --         end
+    
+            --         if MacLib.Options[Flag] and data.color then
+            --             MacLib.Options[Flag]:SetColor(HexToColor3(data.color)) 
+            --             if data.alpha then
+            --                 MacLib.Options[Flag]:SetAlpha(data.alpha)
+            --             end
+            --         end
+            --     end
+            -- }
         }
 
         local function BuildFolderTree()
@@ -5140,11 +5171,12 @@ if isStudio then
     Tabs.Main:CreateColorPicker({
         Name = "Color Picker Example",
         Color = Color3.fromRGB(86, 171, 128),
+        Flag = "ColorPicker1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
         Callback = function(Value)
             -- The function that takes place every time the color picker is moved/changed
             -- The variable (Value) is a Color3fromRGB value based on which color is selected
         end
-    }, "ColorPicker")
+    })
 
     Tabs.Main2:CreateSection("The Elements Here Are To Show Unique Features")
     Tabs.Main2:CreateToggle({
