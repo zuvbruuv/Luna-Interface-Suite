@@ -1,5 +1,5 @@
 # Introduction
-This Documentation Is Last Updated for Prerelease Beta 3.1b
+This Documentation Is Last Updated for Prerelease Beta 3.1c
 ## Why Choose Luna?
   Reliable And Stable  
   Beautful Design  
