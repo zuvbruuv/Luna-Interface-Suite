@@ -138,7 +138,8 @@ local Toggle = Tab:CreateToggle({
 ```
 
 #### Creating A Color Picker
-Color Pickers Are Not Completed And May Have Minor Bugs
+> [!WARNING]
+Color Pickers Are Not Completed And May Have Minor Bugs And They Dont Support Flags
 ```lua
 local ColorPicker = Tab::CreateColorPicker({
 	Name = "Color Picker Example",
@@ -148,7 +149,7 @@ local ColorPicker = Tab::CreateColorPicker({
 		-- The function that takes place every time the color picker is moved/changed
 		-- The variable (Value) is a Color3fromRGB value based on which color is selected
 	end
-})
+}, "ColorPicker") -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 ```
 
 #### Creating A Slider
