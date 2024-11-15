@@ -4876,7 +4876,7 @@ function Luna:CreateWindow(WindowSettings)
 		function Luna:SetFolder(Folder)
 			if isStudio then return "Config system unavailable." end
 
-			Luna.Folder = Folder;
+			Luna.Folder = Luna.Folder .. "Luna/" ..  Folder;
 			BuildFolderTree()
 		end
 
