@@ -1,5 +1,5 @@
 # Introduction
-This Documentation Is Last Updated for Prerelease Beta 2.1
+This Documentation Is Last Updated for Prerelease Beta 3.1b
 ## Why Choose Luna?
   Reliable And Stable  
   Beautful Design  
@@ -82,9 +82,9 @@ Uses our flag system technology to save your current UI Settings
 > [!IMPORTANT]
 > Make sure to add this on the bottom of your code!
 ```lua
-Luna:SetFolder("Luna/YourGame")
-Tab:BuildConfigSection()
-Luna:LoadAutoloadConfig()
+Luna:SetFolder("ROOT FOLDER/Your Script Name") -- The Root Folder Is Only If You Have A Hub With Multiple Game Scripts and u may remove it along with the slash. If u do have a root folder, then the second part will be ur game name.
+Tab:BuildConfigSection() -- Change Tab To The Tab U Want To Have The Configuration Section
+Luna:LoadAutoloadConfig() -- this is if u want ur script to have our autoload feature
 ```
 
 #### Destroying The Interface
@@ -139,7 +139,7 @@ local Toggle = Tab:CreateToggle({
 
 #### Creating A Color Picker
 > [!WARNING]
-Color Pickers Are Not Completed And May Have Minor Bugs And They Dont Support Flags
+Color Pickers Are Not Completed And May Have Minor Bugs And Flags Aren't Completely Finished Yet.
 ```lua
 local ColorPicker = Tab::CreateColorPicker({
 	Name = "Color Picker Example",
@@ -258,10 +258,6 @@ To Destroy An Element, You Can Use :Destroy
 ElementName:Destroy()
 ```
 
-## Check the value of an existing element
-To check the current value of an existing element, using the variable, you can do ElementName.CurrentValue, if it's a dropdown, you will need to use DropdownName.CurrentOption You can also check it via the flags from Luna.Options
-
-
 ## UI Components
 
 ### Textual Elements
@@ -312,16 +308,16 @@ ElementName:Destroy()
 
 Main Developers:  
  `hunter` - Lead/Main Developer, UI Designing, Some Programming, Documentation, and Logo  
- `JustHey` - Co Developer, Major Bug Fixing, Configuration Handling  
+ `JustHey` - Co Developer, Major Bug Fixing, Configuration Scripting
+ `Throit` - Color Picker  
  Wally - Dragging And Certain Other Mechanics  
- Inori - Configurations  
  `shlexr and iRay` -  Rayfield (PCall Parsing, Notifications, Slider)  
   
 Helpers/Side Developers:  
- `Throit` - Color Picker  
  `Tarmac and qweery` - Icon Modules  
  kirill9655 - Loading Circle and Certain Images  
  Sirius Discord Members - Feedback, Suggestions And Testers  
+ Inori - Configuration Concept
 
 > [!NOTE]
 > If Your Name Is in a `box like this`, it means you contributed a lot.
