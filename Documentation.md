@@ -36,13 +36,6 @@ local Window = Luna:CreateWindow({
 	LoadingEnabled = true, -- Whether to enable the loading animation. Set to false if you do not want the loading screen or have your own custom one.
 	LoadingTitle = "Luna Interface Suite", -- Header for loading screen
 	LoadingSubtitle = "by Nebula Softworks", -- Subtitle for loading screen
-
-	ConfigSettings = {
-		RootFolder = nil, -- If you have multiple games for ur hub, set this to ur hub name so there will be different config 
-		-- folders for each game script. otherwsie, this is unnessecary
-		ConfigFolder = "Example Script"
-	},
-
 	KeySystem = false, -- This is still WIP and Luna Will Not use this in the current build. 
 	KeySettings = {
 		Title = "Luna Example Key",
@@ -72,7 +65,6 @@ local Tab = Window:CreateTab({
 	ShowTitle = true -- This will determine whether the big header text in the tab will show
 })
 ```
-
 #### Creating A Section
 Sections Help Organize Your Script. Ability to add Elements To Sections is coming soon
 ```lua
@@ -83,6 +75,15 @@ Tab:CreateSection("Section Example")
 ```
 Section:Set("New Section Name")
 Section:Destroy() -- Destroys the section
+```
+
+#### Setting Up Configuration Tab
+Saves your current UI settings
+> Make sure to add this on the bottom of your code!
+```lua
+Luna:SetFolder("Luna/YourGame")
+Tabs:BuildConfigSection()
+Luna:LoadAutoloadConfig()
 ```
 
 #### Destroying The Interface
@@ -128,12 +129,11 @@ local Toggle = Tab:CreateToggle({
 	Name = "Toggle Example",
 	Description = nil,
 	CurrentValue = false,
-	Flag = "Toggle", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     	Callback = function(Value)
        	 -- The function that takes place when the toggle is switched
        	 -- The variable (Value) is a boolean on whether the toggle is true or false
     	end
-})
+}, "Toggle") -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 ```
 
 #### Creating A Color Picker
@@ -157,12 +157,11 @@ local Slider = Tab:CreateSlider({
 	Range = {0, 200}, -- The Minimum And Maximum Values Respectively
 	Increment = 5, -- Basically The Changing Value/Rounding Off
 	CurrentValue = 100, -- The Starting Value
-	Flag = "Slider", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     	Callback = function(Value)
        	 -- The function that takes place when the slider changes
        	 -- The variable (Value) is a number which correlates to the value the slider is currently at
     	end
-})
+}, "Slider") -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 ```
 
 #### Creating A Dynamic Input (Adaptive Input AKA Textbox)
@@ -182,7 +181,7 @@ local Input = Tab:CreateInput({
        	 -- The function that takes place when the input is changed
 	 -- The variable (Text) is a string for the value in the text box
     	end
-})
+}, "Input") -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 ```
 
 #### Creating A Dropdown Menu
@@ -196,12 +195,11 @@ local Dropdown = Tab:CreateDropdown({
     	CurrentOption = {"Option 1"},
     	MultipleOptions = false,
     	SpecialType = nil,
-	Flag = "Dropdown", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     	Callback = function(Options)
      	 -- The function that takes place when the selected option is changed
     	 -- If MultipleOptions is true then The variable (Options) is a table of strings for the current selected options. Else, it is a string of the currentoption
 	end
-})
+}, "Dropdown") -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 ```
 
 #### Updating And Element Plus Universal Features
@@ -237,12 +235,11 @@ local Bind = TabCreateBind({
 	Description = nil,
 	CurrentKeybind = "Q", -- Check Roblox Studio Docs For KeyCode Names
 	HoldToInteract = false, -- When true, Instead of toggling, You hold to achieve the active state of the Bind
-    	Flag = "Bind",
     	Callback = function(BindState)
      	 -- The function that takes place when the keybind is pressed
      	 -- The variable (BindState) is a boolean for whether the Bind is being held or not (HoldToInteract needs to be true) OR it is whether the Bind is active
     	end
-})
+}, "Bind") -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 ```
 #### Updating Binded Keys
 Updating Binded Keys Is The Same As Updating Other Elements  
