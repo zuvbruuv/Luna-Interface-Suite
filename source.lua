@@ -4053,7 +4053,7 @@ function Luna:CreateWindow(WindowSettings)
 				Input.InputFrame.InputBox:CaptureFocus()
 				Input.InputFrame.InputBox.Text = tostring(InputSettings.CurrentValue)
 				Input.InputFrame.InputBox:ReleaseFocus()
-				Input.InputFrame.InputBox.Size = UDim2.new(0, Input.InputFrame.InputBox.TextBounds.X + 52, 0, 42)
+				Input.InputFrame.Size = UDim2.new(0, Input.InputFrame.InputBox.TextBounds.X + 52, 0, 42)
 
 				Luna.Flags[InputSettings.Flag] = InputSettings
 				
