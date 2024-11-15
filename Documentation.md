@@ -77,16 +77,6 @@ Section:Set("New Section Name")
 Section:Destroy() -- Destroys the section
 ```
 
-#### Setting Up Configuration Tab
-Uses our flag system technology to save your current UI Settings
-> [!IMPORTANT]
-> Make sure to add this on the bottom of your code!
-```lua
-Luna:SetFolder("ROOT FOLDER/Your Script Name") -- The Root Folder Is Only If You Have A Hub With Multiple Game Scripts and u may remove it along with the slash. If u do have a root folder, then the second part will be ur game name.
-Tab:BuildConfigSection() -- Change Tab To The Tab U Want To Have The Configuration Section
-Luna:LoadAutoloadConfig() -- this is if u want ur script to have our autoload feature
-```
-
 #### Destroying The Interface
 Destroys the UI And Elements
 > [!WARNING]
@@ -303,7 +293,20 @@ To Destroy An Element, You Can Use :Destroy
 ElementName:Destroy()
 ```
 
-## Extras
+## Finishing Your Script and Extras  
+
+### Finishing Your Script
+
+#### Setting Up Configuration Tab
+Uses our flag system technology to save your current UI Settings
+> [!IMPORTANT]
+> Make sure to add this on the bottom of your code!
+```lua
+Luna:SetFolder("ROOT FOLDER/Your Script Name") -- The Root Folder Is Only If You Have A Hub With Multiple Game Scripts and u may remove it along with the slash. If u do have a root folder, then the second part will be ur game name.
+Tab:BuildConfigSection() -- Change Tab To The Tab U Want To Have The Configuration Section
+Luna:LoadAutoloadConfig() -- this is if u want ur script to have our autoload feature
+```
+
 ### Credits
 
 Main Developers:  
