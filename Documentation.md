@@ -83,7 +83,7 @@ Uses our flag system technology to save your current UI Settings
 > Make sure to add this on the bottom of your code!
 ```lua
 Luna:SetFolder("Luna/YourGame")
-Tabs:BuildConfigSection()
+Tab:BuildConfigSection()
 Luna:LoadAutoloadConfig()
 ```
 
