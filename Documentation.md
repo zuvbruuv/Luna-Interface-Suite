@@ -7,7 +7,7 @@ This Documentation Is Last Updated for Prerelease Beta 2.1
   Amazing Features like key system, custom configs, prebuilt tabs and more!  
   Smooth And Excellent Performance  
   
-Now Let's Get Started, Shall We?
+*Now Let's Get Started, Shall We?*
 
 **Also hope shlex will add this docs.sirius.menu but its fine here lol**
 
@@ -24,7 +24,11 @@ local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-S
 
 ## Windows
 #### Creating The Window
-Sadly, Unlike Older Projects, Luna Can't Have Multiple Windows. But It's Fine! Right?
+Sadly, Unlike Older Projects, Luna Can't Have Multiple Windows. But It's Fine! Right?  
+
+> [!IMPORTANT]
+> Luna's Glassmorphism Requires Graphics Level 8 Or Above
+
 ```lua
 local Window = Luna:CreateWindow({
 	Name = "Luna Example Window", -- This Is Title Of Your Window
