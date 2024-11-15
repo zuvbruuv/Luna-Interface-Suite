@@ -257,6 +257,10 @@ To Destroy An Element, You Can Use :Destroy
 ElementName:Destroy()
 ```
 
+## Check the value of an existing element
+To check the current value of an existing element, using the variable, you can do ElementName.CurrentValue, if it's a dropdown, you will need to use DropdownName.CurrentOption You can also check it via the flags from Luna.Options
+
+
 ## UI Components
 
 ### Textual Elements
