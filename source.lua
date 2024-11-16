@@ -2741,6 +2741,45 @@ local function Minimize(Window)
 	tween(Window, {Size = MinSize})
 end
 
+function Luna:LoadAutoloadConfig()
+	if isfile(Luna.Folder .. "/settings/autoload.txt") then
+
+		if isStudio then return "Config system unavailable." end
+
+		local name = readfile(Luna.Folder .. "/settings/autoload.txt")
+
+		local success, err = Luna:LoadConfig(name)
+		if not success then
+			return Luna:Notification({
+				Title = "Interface",
+				Icon = "sparkle",
+				ImageSource = "Material",
+				Content = "Failed to load autoload config: " .. err,
+			})
+		end
+
+		Luna:Notification({
+			Title = "Interface",
+			Icon = "sparkle",
+			ImageSource = "Material",
+			Content = string.format("Auto loaded config %q", name),
+		})
+
+	end 
+end
+
+function Luna:SetFolder(Folder)
+	if isStudio then return "Config system unavailable." end
+
+	if WindowSettings.ConfigSettings.RootFolder ~= nil and WindowSettings.ConfigSettings.RootFolder ~= "" then
+		Luna.Folder = WindowSettings.ConfigSettings.RootFolder and "Luna/Configurations/" .. WindowSettings.ConfigSetttings.RootFolder .. "/" .. Folder
+	else
+		Luna.Folder = WindowSettings.ConfigSettings.RootFolder and "Luna/Configurations/" .. Folder
+	end
+
+	BuildFolderTree()
+end
+
 function Luna:CreateWindow(WindowSettings)
 
 	WindowSettings = Kwargify({
@@ -5163,18 +5202,6 @@ function Luna:CreateWindow(WindowSettings)
 			end
 		end
 
-		function Luna:SetFolder(Folder)
-			if isStudio then return "Config system unavailable." end
-
-			if WindowSettings.ConfigSettings.RootFolder ~= nil and WindowSettings.ConfigSettings.RootFolder ~= "" then
-				Luna.Folder = WindowSettings.ConfigSettings.RootFolder and "Luna/Configurations/" .. WindowSettings.ConfigSetttings.RootFolder .. "/" .. Folder
-			else
-				Luna.Folder = WindowSettings.ConfigSettings.RootFolder and "Luna/Configurations/" .. Folder
-			end
-			
-			BuildFolderTree()
-		end
-
 		function Luna:SaveConfig(Path)
 			if isStudio then return "Config system unavailable." end
 
@@ -5226,33 +5253,6 @@ function Luna:CreateWindow(WindowSettings)
 			end
 
 			return true
-		end
-
-		function Luna:LoadAutoloadConfig()
-			if isfile(Luna.Folder .. "/settings/autoload.txt") then
-
-				if isStudio then return "Config system unavailable." end
-
-				local name = readfile(Luna.Folder .. "/settings/autoload.txt")
-
-				local success, err = Luna:LoadConfig(name)
-				if not success then
-					return Luna:Notification({
-						Title = "Interface",
-						Icon = "sparkle",
-						ImageSource = "Material",
-						Content = "Failed to load autoload config: " .. err,
-					})
-				end
-
-				Luna:Notification({
-					Title = "Interface",
-					Icon = "sparkle",
-					ImageSource = "Material",
-					Content = string.format("Auto loaded config %q", name),
-				})
-
-			end 
 		end
 
 
