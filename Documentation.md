@@ -1,5 +1,5 @@
 # Introduction
-This Documentation Is Last Updated for Prerelease Beta 3.1c
+This Documentation Is Last Updated for Prerelease Beta 4
 ## Why Choose Luna?
   Reliable And Stable  
   Beautful Design  
@@ -36,6 +36,12 @@ local Window = Luna:CreateWindow({
 	LoadingEnabled = true, -- Whether to enable the loading animation. Set to false if you do not want the loading screen or have your own custom one.
 	LoadingTitle = "Luna Interface Suite", -- Header for loading screen
 	LoadingSubtitle = "by Nebula Softworks", -- Subtitle for loading screen
+
+	ConfigSettings = {
+		RootFolder = nil, -- The Root Folder Is Only If You Have A Hub With Multiple Game Scripts and u may remove it. DO NOT ADD A SLASH
+		ConfigFolder = "Big Hub" -- The Name Of The Folder Where Luna Will Store Configs For This Script. DO NOT ADD A SLASH
+	}	
+
 	KeySystem = false, -- This is still WIP and Luna Will Not use this in the current build. 
 	KeySettings = {
 		Title = "Luna Example Key",
@@ -54,6 +60,8 @@ Luna Uses Custom Icons so u do not have to find ans upload your own!
 We have 2 sources ; [Lucide](https://lucide.dev) and [Material](https://fonts.google.com/icons?icon.query=home&icon.set=Material+Icons&icon.style=Sharp).  
 Simply grab the name of your icon and paste it into the icon parameter. If you're using Lucide, replace spaces with dashes (-) and if you're on Material, replace spaces with underscores (_)  
 Make sure to change ImageSource to the source you're using.
+
+However, If you would still like to use your own custom icons, You may do so by changing the Icon value to the ID of ur image (DO NOT INCLUDE rbxassetid://) and Changing ImageSource to Custom.
 
 #### Creating A Tab
 This will show u how to create the instance of a tab. I reccomend storing them in a table but it is fine for the docs.
@@ -229,7 +237,7 @@ local Bind = TabCreateBind({
      	 -- The variable (BindState) is a boolean for whether the Bind is being held or not (HoldToInteract needs to be true) OR it is whether the Bind is active
     	end
 }, "Bind") -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-```
+```  
 #### Updating Binded Keys
 Updating Binded Keys Is The Same As Updating Other Elements  
 To Access An Element's Values, you can simply do:  
@@ -298,13 +306,25 @@ ElementName:Destroy()
 ### Finishing Your Script
 
 #### Setting Up Configuration Tab
-Uses our flag system technology to save your current UI Settings
-> [!IMPORTANT]
-> Make sure to add this on the bottom of your code!
+Create the config section that uses our Flag System Technology to save your configurations
 ```lua
-Luna:SetFolder("ROOT FOLDER/Your Script Name") -- The Root Folder Is Only If You Have A Hub With Multiple Game Scripts and u may remove it along with the slash. If u do have a root folder, then the second part will be ur game name.
-Tab:BuildConfigSection() -- Change Tab To The Tab U Want To Have The Configuration Section
-Luna:LoadAutoloadConfig() -- this is if u want ur script to have our autoload feature
+Tab:BuildConfigSection() -- Tab Should be the name of the tab you are adding this section to.
+```
+
+#### Setting Up Theming
+As Of Beta 4, Luna has implemented theming. Users may change the accent of the Interface using Color Pickers or Using Preset Colors handpicked by Nebula Softworks
+```lua
+Tab:BuildThemeSection() -- Tab Should be the name of the tab you are adding this section to.
+```
+
+### Adding A Home Tab.
+As Of Beta 4, Luna has implemented a Premade Home tab with a information dashboard similar to Sirius and Eclipse Hub.
+```lua
+Window:CreateHomeTab({
+	SupportedExecutors = {}, -- A Table Of Executors Your Script Supports. Add strings of the executor names for each executor.
+	DiscordInvite = "1234", -- The Discord Invite Link. Do Not Include discord.gg/ | Only Include the code.
+	Icon = 1, -- By Default, The Icon Is The Home Icon. If You would like to change it to dashboard, replace the interger with 2
+})
 ```
 
 ### Credits
