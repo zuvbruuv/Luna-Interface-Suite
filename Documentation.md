@@ -227,7 +227,7 @@ ElementName:Destroy()
 
 #### Creating A Keybind
 ```lua
-local Bind = TabCreateBind({
+local Bind = Tab:CreateBind({
 	Name = "Bind Example",
 	Description = nil,
 	CurrentKeybind = "Q", -- Check Roblox Studio Docs For KeyCode Names
