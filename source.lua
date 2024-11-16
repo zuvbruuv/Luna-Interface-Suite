@@ -22,7 +22,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 4.02a"
+local Release = "Prerelease Beta 4.03a"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -2795,23 +2795,23 @@ function Luna:Notification(data) -- action e.g open messages
 		newNotification.Description.TextTransparency = 1
 		newNotification.UIStroke.Transparency = 1
 		newNotification.Shadow.ImageTransparency = 1
-		newNotification.Size = UDim2.new(1, 0, 0.5, 0)
 		newNotification.Icon.ImageTransparency = 1
 		newNotification.Icon.BackgroundTransparency = 1
 
 		task.wait()
 
 		-- Calculate textbounds and set initial values
-		newNotification.Size = UDim2.new(1, -60, 0, -Notifications:FindFirstChild("UIListLayout").Padding.Offset)
+		newNotification.Size = UDim2.new(1, 0, 0, -Notifications:FindFirstChild("UIListLayout").Padding.Offset)
 
 		newNotification.Icon.Size = UDim2.new(0, 28, 0, 28)
 		newNotification.Icon.Position = UDim2.new(0, 16, 0.5, -1)
 
 		newNotification.Visible = true
 
-		newNotification.Size = UDim2.new(1, 0, 0, math.huge)
-		local bounds = newNotification.Description.TextBounds.Y + 50
-		newNotification.Size = UDim2.new(1, -60, 0, -Notifications:FindFirstChild("UIListLayout").Padding.Offset)
+		newNotification.Description.Size = UDim2.new(1, -65, 0, math.huge)
+		local bounds = newNotification.Description.TextBounds.Y + 55
+		newNotification.Description.Size = UDim2.new(1,-65,0, bounds - 55)
+		newNotification.Size = UDim2.new(1, 0, 0, -Notifications:FindFirstChild("UIListLayout").Padding.Offset)
 		TweenService:Create(newNotification, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Size = UDim2.new(1, 0, 0, bounds)}):Play()
 
 		task.wait(0.15)
