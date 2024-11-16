@@ -22,7 +22,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 4d"
+local Release = "Prerelease Beta 4e"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -5180,6 +5180,12 @@ function Luna:CreateWindow(WindowSettings)
 		local function BuildFolderTree()
 			if isStudio then return "Config system unavailable." end
 
+			if WindowSettings.ConfigSettings.RootFolder ~= nil and WindowSettings.ConfigSettings.RootFolder ~= "" then
+				Luna.Folder = "Luna/Configurations/" .. WindowSettings.ConfigSetttings.RootFolder .. "/" .. WindowSettings.ConfigSettings.ConfigFolder
+			else
+				Luna.Folder = "Luna/Configurations/" .. WindowSettings.ConfigSettings.ConfigFolder
+			end
+
 			local paths = {
 				Luna.Folder,
 				Luna.Folder .. "/settings"
@@ -5191,18 +5197,6 @@ function Luna:CreateWindow(WindowSettings)
 					makefolder(str)
 				end
 			end
-		end
-
-		function Luna:SetFolder(Folder)
-			if isStudio then return "Config system unavailable." end
-
-			if WindowSettings.ConfigSettings.RootFolder ~= nil and WindowSettings.ConfigSettings.RootFolder ~= "" then
-				Luna.Folder = "Luna/Configurations/" .. WindowSettings.ConfigSetttings.RootFolder .. "/" .. Folder
-			else
-				Luna.Folder = "Luna/Configurations/" .. Folder
-			end
-
-			BuildFolderTree()
 		end
 		
 		function Luna:SaveConfig(Path)
@@ -5287,10 +5281,6 @@ function Luna:CreateWindow(WindowSettings)
 			end
 
 			return out
-		end
-		
-		if not isStudio then
-			Luna:SetFolder(WindowSettings.ConfigSettings.ConfigFolder)
 		end
 
 		return Tab
