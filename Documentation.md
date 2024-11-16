@@ -115,7 +115,7 @@ Luna:Notification({
 ```lua
 local Button = Tab:CreateButton({
 	Name = "Button Example!",
-	Description = nil -- Creates A Description For Users to know what the button does (looks bad if you use it all the time),
+	Description = nil, -- Creates A Description For Users to know what the button does (looks bad if you use it all the time),
     	Callback = function()
          -- The function that takes place when the button is pressed
     	end
@@ -139,7 +139,7 @@ local Toggle = Tab:CreateToggle({
 > [!WARNING]
 Color Pickers Are Not Completed And May Have Minor Bugs And Flags Aren't Completely Finished Yet.
 ```lua
-local ColorPicker = Tab::CreateColorPicker({
+local ColorPicker = Tab:CreateColorPicker({
 	Name = "Color Picker Example",
 	Color = Color3.fromRGB(86, 171, 128),
 	Flag = "ColorPicker1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
