@@ -54,6 +54,13 @@ local Window = Luna:CreateWindow({
 	}
 })
 ```
+## Enabling Configuration Saving
+> [!TIP]
+> Choose an appropiate FileName in the CreateWindow function
+> Choose an unique flag identifier for each supported element you create
+> Create a config and enable the Auto Load Configuration button
+> Place ``Luna:LoadAutoloadConfig()`` at the bottom of all your code
+Luna will now automatically load up your saved configuration 😄
 
 #### Luna Icons
 Luna Uses Custom Icons so u do not have to find ans upload your own!
@@ -255,6 +262,9 @@ To Destroy An Element, You Can Use :Destroy
 ```lua
 ElementName:Destroy()
 ```
+
+## Check the value of an existing element
+To check the current value of an existing element, using the variable, you can do ElementName.CurrentValue, if it's a dropdown or colorpicker, you will need to use DropdownName.CurrentOption or ColorpickerName.CurrentColor You can also check it via the flags from Luna.Options
 
 ## UI Components
 
