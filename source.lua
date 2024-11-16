@@ -22,7 +22,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 4.05"
+local Release = "Prerelease Beta 4.04"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -3181,7 +3181,7 @@ function Luna:CreateWindow(WindowSettings)
 		-- Stolen From Sirius Stuff Begins Here
 	
 			HomeTabPage.detailsholder.dashboard.Discord.Interact.MouseButton1Click:Connect(function()
-				
+				setclipboard(tostring("https://discord.gg/"..HomeTabSettings.DiscordInvite)) -- Hunter if you see this I added copy also was too lazy to send u msg
 				if request then
 					request({
 						Url = 'http://127.0.0.1:6463/rpc?v=1',
