@@ -1,5 +1,5 @@
 # Introduction
-This Documentation Is Last Updated for Prerelease Beta 4a
+This Documentation Is Last Updated for Prerelease Beta 4.02a
 ## Why Choose Luna?
   Reliable And Stable  
   Beautful Design  
@@ -40,7 +40,7 @@ local Window = Luna:CreateWindow({
 	ConfigSettings = {
 		RootFolder = nil, -- The Root Folder Is Only If You Have A Hub With Multiple Game Scripts and u may remove it. DO NOT ADD A SLASH
 		ConfigFolder = "Big Hub" -- The Name Of The Folder Where Luna Will Store Configs For This Script. DO NOT ADD A SLASH
-	}	
+	},
 
 	KeySystem = false, -- This is still WIP and Luna Will Not use this in the current build. 
 	KeySettings = {
