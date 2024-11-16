@@ -60,6 +60,7 @@ local Window = Luna:CreateWindow({
 > 2. Choose an unique flag identifier for each supported element you create
 > 3. Create a config and enable the Auto Load Configuration button
 > 4. Place ``Luna:LoadAutoloadConfig()`` at the bottom of all your code
+
 Luna will now automatically load up your saved configuration 😄
 
 #### Luna Icons
