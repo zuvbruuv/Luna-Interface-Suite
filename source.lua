@@ -5434,7 +5434,7 @@ function Luna:CreateWindow(WindowSettings)
             if isStudio then return "Config system unavailable." end
 
             if WindowSettings.ConfigSettings.RootFolder ~= nil and WindowSettings.ConfigSettings.RootFolder ~= "" then
-				Luna.Folder = WindowSettings.ConfigSetttings.RootFolder .. "/" .. WindowSettings.ConfigSettings.ConfigFolder
+				Luna.Folder = WindowSettings.ConfigSettings.RootFolder .. "/" .. WindowSettings.ConfigSettings.ConfigFolder
 			else
 				Luna.Folder = WindowSettings.ConfigSettings.ConfigFolder
 			end
