@@ -22,7 +22,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 4c"
+local Release = "Prerelease Beta 4d"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -5197,9 +5197,9 @@ function Luna:CreateWindow(WindowSettings)
 			if isStudio then return "Config system unavailable." end
 
 			if WindowSettings.ConfigSettings.RootFolder ~= nil and WindowSettings.ConfigSettings.RootFolder ~= "" then
-				Luna.Folder = WindowSettings.ConfigSettings.RootFolder and "Luna/Configurations/" .. WindowSettings.ConfigSetttings.RootFolder .. "/" .. Folder
+				Luna.Folder = "Luna/Configurations/" .. WindowSettings.ConfigSetttings.RootFolder .. "/" .. Folder
 			else
-				Luna.Folder = WindowSettings.ConfigSettings.RootFolder and "Luna/Configurations/" .. Folder
+				Luna.Folder = "Luna/Configurations/" .. Folder
 			end
 
 			BuildFolderTree()
