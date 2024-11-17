@@ -2463,7 +2463,7 @@ local function BlurModule(Frame)
 		local acos, max, pi, sqrt = math.acos, math.max, math.pi, math.sqrt
 		local sz = 0.22
 		local function DrawTriangle(v1, v2, v3, p0, p1) -- I think Stravant wrote this function
-
+		
 			local s1 = (v1 - v2).magnitude
 			local s2 = (v2 - v3).magnitude
 			local s3 = (v3 - v1).magnitude
@@ -2521,7 +2521,7 @@ local function BlurModule(Frame)
 			end
 			p0.WedgeMesh.Scale = Vector3.new(0, perp/sz, para/sz)
 			p0.CFrame = cf0
-
+			
 			if not p1 then
 				p1 = p0:clone()
 			end
@@ -2558,7 +2558,6 @@ local function BlurModule(Frame)
 	end
 
 	local function UpdateOrientation(fetchProps)
-		if Frame.Visible then
 			local properties = {
 				Transparency = 0.98;
 				BrickColor = BrickColor.new('Institutional white');
@@ -2599,7 +2598,7 @@ local function BlurModule(Frame)
 					end
 				end
 			end
-		end
+		
 	end
 
 	UpdateOrientation(true)
@@ -2886,7 +2885,10 @@ function Luna:Notification(data) -- action e.g open messages
 	end)
 end
 
+local SizeBleh = nil
+
 local function Hide(Window, bind)
+	SizeBleh = Window.Size
 	bind = string.split(tostring(bind), "Enum.KeyCode.")
 	bind = bind[2]
 	Luna:Notification({Title = "Interface Hidden", Content = "The interface has been hidden, you may reopen the interface by Pressing the UI Bind In Settings ("..tostring(bind)..")", Icon = "visibility_off"})
@@ -2913,12 +2915,16 @@ local function Hide(Window, bind)
 			TweenService:Create(tabbtn.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 		end
 	end
+
 	task.wait(0.28)
+	Window.Size = UDim2.new(0,0,0,0)
+	task.wait()
 	Window.Elements.Parent.Visible = false
 	Window.Visible = false
 end
 
 local function Unhide(Window, currentTab)
+	Window.Size = SizeBleh
 	Window.Elements.Visible = true
 	Window.Visible = true
 	task.wait()
@@ -3308,6 +3314,8 @@ function Luna:CreateWindow(WindowSettings)
 		TabPage.Title.Visible = TabSettings.ShowTitle
 		TabPage.Title.Text = TabSettings.Name
 		TabPage.Visible = true
+
+		Tab.Page = TabPage
 
 		if TabSettings.ShowTitle == false then
 			TabPage.UIPadding.PaddingTop = UDim.new(0,10)
@@ -5375,7 +5383,7 @@ function Luna:CreateWindow(WindowSettings)
 			local c3cp = Tab:CreateColorPicker({
 				Name = "Color 3",
 				Color = Color3.fromRGB(224, 138, 184),
-			}, "LunaInterfaceSuitePrebuiltCPC3") -- IS THIS NOT CORRECT
+			}, "LunaInterfaceSuitePrebuiltCPC3") 
 
 			task.wait(1)
 
