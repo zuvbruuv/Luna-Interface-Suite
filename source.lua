@@ -2738,71 +2738,71 @@ local Notifications = LunaUI.Notifications
 -- end
 
 local function Draggable(Bar, Window, enableTaptic, tapticOffset)
-    pcall(function()
-        local Dragging, DragInput, MousePos, FramePos
+	pcall(function()
+		local Dragging, DragInput, MousePos, FramePos
 
-        local function connectFunctions()
-            if dragBar and enableTaptic then
-                dragBar.MouseEnter:Connect(function()
-                    if not Dragging then
-                        TweenService:Create(dragBarCosmetic, TweenInfo.new(0.25, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {BackgroundTransparency = 0.5, Size = UDim2.new(0, 120, 0, 4)}):Play()
-                    end
-                end)
-    
-                dragBar.MouseLeave:Connect(function()
-                    if not Dragging then
-                        TweenService:Create(dragBarCosmetic, TweenInfo.new(0.25, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {BackgroundTransparency = 0.7, Size = UDim2.new(0, 100, 0, 4)}):Play()
-                    end
-                end)
-            end
-        end
+		local function connectFunctions()
+			if dragBar and enableTaptic then
+				dragBar.MouseEnter:Connect(function()
+					if not Dragging then
+						TweenService:Create(dragBarCosmetic, TweenInfo.new(0.25, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {BackgroundTransparency = 0.5, Size = UDim2.new(0, 120, 0, 4)}):Play()
+					end
+				end)
 
-        connectFunctions()
+				dragBar.MouseLeave:Connect(function()
+					if not Dragging then
+						TweenService:Create(dragBarCosmetic, TweenInfo.new(0.25, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {BackgroundTransparency = 0.7, Size = UDim2.new(0, 100, 0, 4)}):Play()
+					end
+				end)
+			end
+		end
 
-        Bar.InputBegan:Connect(function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-                Dragging = true
-                MousePos = Input.Position
-                FramePos = Window.Position
+		connectFunctions()
 
-                if enableTaptic then
-                    TweenService:Create(dragBarCosmetic, TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Size = UDim2.new(0, 110, 0, 4), BackgroundTransparency = 0}):Play()
-                end
+		Bar.InputBegan:Connect(function(Input)
+			if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
+				Dragging = true
+				MousePos = Input.Position
+				FramePos = Window.Position
 
-                Input.Changed:Connect(function()
-                    if Input.UserInputState == Enum.UserInputState.End then
-                        Dragging = false
-                        connectFunctions()
+				if enableTaptic then
+					TweenService:Create(dragBarCosmetic, TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Size = UDim2.new(0, 110, 0, 4), BackgroundTransparency = 0}):Play()
+				end
 
-                        if enableTaptic then
-                            TweenService:Create(dragBarCosmetic, TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Size = UDim2.new(0, 100, 0, 4), BackgroundTransparency = 0.7}):Play()
-                        end
-                    end
-                end)
-            end
-        end)
+				Input.Changed:Connect(function()
+					if Input.UserInputState == Enum.UserInputState.End then
+						Dragging = false
+						connectFunctions()
 
-        Bar.InputChanged:Connect(function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch then
-                DragInput = Input
-            end
-        end)
+						if enableTaptic then
+							TweenService:Create(dragBarCosmetic, TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Size = UDim2.new(0, 100, 0, 4), BackgroundTransparency = 0.7}):Play()
+						end
+					end
+				end)
+			end
+		end)
 
-        UserInputService.InputChanged:Connect(function(Input)
-            if Input == DragInput and Dragging then
-                local Delta = Input.Position - MousePos
-        
-                local newMainPosition = UDim2.new(FramePos.X.Scale, FramePos.X.Offset + Delta.X, FramePos.Y.Scale, FramePos.Y.Offset + Delta.Y)
-                TweenService:Create(Window, TweenInfo.new(0.35, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Position = newMainPosition}):Play()
-        
-                if dragBar then
-                    local newDragBarPosition = UDim2.new(FramePos.X.Scale, FramePos.X.Offset + Delta.X, FramePos.Y.Scale, FramePos.Y.Offset + Delta.Y + 240)
-                    dragBar.Position = newDragBarPosition
-                end
-            end
-        end)
-        
-    end)
+		Bar.InputChanged:Connect(function(Input)
+			if Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch then
+				DragInput = Input
+			end
+		end)
+
+		UserInputService.InputChanged:Connect(function(Input)
+			if Input == DragInput and Dragging then
+				local Delta = Input.Position - MousePos
+
+				local newMainPosition = UDim2.new(FramePos.X.Scale, FramePos.X.Offset + Delta.X, FramePos.Y.Scale, FramePos.Y.Offset + Delta.Y)
+				TweenService:Create(Window, TweenInfo.new(0.35, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Position = newMainPosition}):Play()
+
+				if dragBar then
+					local newDragBarPosition = UDim2.new(FramePos.X.Scale, FramePos.X.Offset + Delta.X, FramePos.Y.Scale, FramePos.Y.Offset + Delta.Y + 240)
+					dragBar.Position = newDragBarPosition
+				end
+			end
+		end)
+
+	end)
 end
 
 function Luna:Notification(data) -- action e.g open messages
@@ -3107,8 +3107,8 @@ function Luna:CreateWindow(WindowSettings)
 	wait(0.4)
 	LoadingFrame.Visible = false
 
-    Draggable(Dragger, Main)
-    if dragBar then Draggable(dragInteract, Main, true, 255) end
+	Draggable(Dragger, Main)
+	if dragBar then Draggable(dragInteract, Main, true, 255) end
 
 	Elements.Template.LayoutOrder = 1000000000
 	Elements.Template.Visible = false
@@ -3116,26 +3116,26 @@ function Luna:CreateWindow(WindowSettings)
 	Navigation.Tabs["InActive Template"].Visible = false
 
 	local FirstTab = true
-	
+
 	function Window:CreateHomeTab(HomeTabSettings)
-		
+
 		HomeTabSettings = Kwargify({
 			Icon = 1,
 			SupportedExecutors = {"Vega X", "Delta", "Nihon", "Xeno"}, -- THESE DEFAULTS ARE PLACEHOLDERS!! I DO NOT ADVERTISE THESE, THEY ARE JUS THE FIRST THAT CAME TO MIND. I HAVE NO IDEA WHETHER THEYA RE RATS (they prob are) AND IM NOT RESPONSIBLE IF U GET VIRUSES FROM INSTALLING AFTER SEEING THIS LIST
 			DiscordInvite = "noinvitelink" -- The disvord invite link. Do not include the link so for example if my invite was discord.gg/nebula I would put nebula
 		}, HomeTabSettings or {})
-		
+
 		local HomeTab = {}
-		
+
 		local HomeTabButton = Navigation.Tabs.Home
 		HomeTabButton.Visible = true
 		if HomeTabSettings.Icon == 2 then
 			HomeTabButton.ImageLabel.Image = GetIcon("dashboard", "Material")
 		end
-		
+
 		local HomeTabPage = Elements.Home
 		HomeTabPage.Visible = true
-		
+
 		function HomeTab:Activate()
 			tween(HomeTabButton.ImageLabel, {ImageColor3 = Color3.fromRGB(255,255,255)})
 			tween(HomeTabButton, {BackgroundTransparency = 0})
@@ -3156,18 +3156,18 @@ function Luna:CreateWindow(WindowSettings)
 
 			Window.CurrentTab = "Home"
 		end
-		
+
 		HomeTab:Activate()
 		FirstTab = false
 		HomeTabButton.Interact.MouseButton1Click:Connect(function()
 			HomeTab:Activate()
 		end)
-		
-		
+
+
 		HomeTabPage.icon.ImageLabel.Image = Players:GetUserThumbnailAsync(Players.LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
 		HomeTabPage.player.Text.Text = "Hello, " .. Players.LocalPlayer.DisplayName
 		HomeTabPage.player.user.Text = Players.LocalPlayer.Name .. " - ".. WindowSettings.Name
-		
+
 		HomeTabPage.detailsholder.dashboard.Client.Title.Text = (isStudio and "Debugging (Studio)" or identifyexecutor()) or "Your Executor Does Not Support identifyexecutor."
 		for i,v in pairs(HomeTabSettings.SupportedExecutors) do
 			if isStudio then HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Luna Interface Suite - Debugging Mode" break end
@@ -3177,28 +3177,28 @@ function Luna:CreateWindow(WindowSettings)
 				HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Your Executor Isn't Officialy Supported By This Script."
 			end
 		end
-		
+
 		-- Stolen From Sirius Stuff Begins Here
-	
-			HomeTabPage.detailsholder.dashboard.Discord.Interact.MouseButton1Click:Connect(function()
-				setclipboard(tostring("https://discord.gg/"..HomeTabSettings.DiscordInvite)) -- Hunter if you see this I added copy also was too lazy to send u msg
-				if request then
-					request({
-						Url = 'http://127.0.0.1:6463/rpc?v=1',
-						Method = 'POST',
-						Headers = {
-							['Content-Type'] = 'application/json',
-							Origin = 'https://discord.com'
-						},
-						Body = HttpService:JSONEncode({
-							cmd = 'INVITE_BROWSER',
-							nonce = HttpService:GenerateGUID(false),
-							args = {code = HomeTabSettings.DiscordInvite}
-						})
+
+		HomeTabPage.detailsholder.dashboard.Discord.Interact.MouseButton1Click:Connect(function()
+			setclipboard(tostring("https://discord.gg/"..HomeTabSettings.DiscordInvite)) -- Hunter if you see this I added copy also was too lazy to send u msg
+			if request then
+				request({
+					Url = 'http://127.0.0.1:6463/rpc?v=1',
+					Method = 'POST',
+					Headers = {
+						['Content-Type'] = 'application/json',
+						Origin = 'https://discord.com'
+					},
+					Body = HttpService:JSONEncode({
+						cmd = 'INVITE_BROWSER',
+						nonce = HttpService:GenerateGUID(false),
+						args = {code = HomeTabSettings.DiscordInvite}
 					})
-				end
-			end)
-			
+				})
+			end
+		end)
+
 		local friendsCooldown = 0
 		local function getPing() return math.clamp(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue(), 10, 700) end
 
@@ -3211,7 +3211,7 @@ function Luna:CreateWindow(WindowSettings)
 				local friendsInTotal = 0
 				local onlineFriends = 0 
 				local friendsInGame = 0 
-					
+
 				local list = Players:GetFriendsAsync(Player.UserId)
 				while true do -- loop through all the pages
 					for _, data in list:GetCurrentPage() do
@@ -3230,7 +3230,7 @@ function Luna:CreateWindow(WindowSettings)
 				for i, v in pairs(Player:GetFriendsOnline()) do
 					onlineFriends += 1
 				end
-				
+
 				for i,v in pairs(playersFriends) do
 					if Players:FindFirstChild(v.Username) then
 						friendsInGame = friendsInGame + 1
@@ -3246,7 +3246,7 @@ function Luna:CreateWindow(WindowSettings)
 				friendsCooldown -= 1
 			end
 		end
-		
+
 		local function format(Int)
 			return string.format("%02i", Int)
 		end
@@ -3258,11 +3258,11 @@ function Luna:CreateWindow(WindowSettings)
 			Minutes = Minutes - Hours*60
 			return format(Hours)..":"..format(Minutes)..":"..format(Seconds)
 		end
-		
+
 		coroutine.wrap(function()
 			while task.wait() do
-				
-				
+
+
 				-- Players
 				HomeTabPage.detailsholder.dashboard.Server.Players.Value.Text = #Players:GetPlayers().." playing"
 				HomeTabPage.detailsholder.dashboard.Server.MaxPlayers.Value.Text = Players.MaxPlayers.." players can join this server"
@@ -3279,11 +3279,11 @@ function Luna:CreateWindow(WindowSettings)
 				checkFriends()
 			end
 		end)()
-		
+
 		-- Stolen From Sirius Stuff ends here
-		
+
 	end
-	
+
 	function Window:CreateTab(TabSettings)
 
 		local Tab = {}
@@ -3337,7 +3337,7 @@ function Luna:CreateWindow(WindowSettings)
 					tween(OtherTabButton, {BackgroundTransparency = 1})
 					tween(OtherTabButton.UIStroke, {Transparency = 1})
 				end
-				
+
 			end
 
 			Window.CurrentTab = TabSettings.Name
@@ -3631,7 +3631,7 @@ function Luna:CreateWindow(WindowSettings)
 			Slider.Main.Progress.Size =	UDim2.new(0, Slider.Main.AbsoluteSize.X * ((SliderSettings.CurrentValue + SliderSettings.Range[1]) / (SliderSettings.Range[2] - SliderSettings.Range[1])) > 5 and Slider.Main.AbsoluteSize.X * (SliderSettings.CurrentValue / (SliderSettings.Range[2] - SliderSettings.Range[1])) or 5, 1, 0)
 
 			Slider.Value.Text = tostring(SliderSettings.CurrentValue)
-            SliderV.CurrentValue = Slider.Value.Text
+			SliderV.CurrentValue = Slider.Value.Text
 
 			SliderSettings.Callback(SliderSettings.CurrentValue)
 
@@ -3776,7 +3776,7 @@ function Luna:CreateWindow(WindowSettings)
 			if Flag then
 				Luna.Options[Flag] = SliderV
 			end
-			
+
 			LunaUI.ThemeRemote:GetPropertyChangedSignal("Value"):Connect(function()
 				Slider.Main.color.Color = Luna.ThemeGradient
 				Slider.Main.UIStroke.color.Color = Luna.ThemeGradient
@@ -3925,8 +3925,8 @@ function Luna:CreateWindow(WindowSettings)
 				end
 
 				Set(ToggleSettings.CurrentValue)
-                
-                ToggleV.CurrentValue = ToggleSettings.CurrentValue
+
+				ToggleV.CurrentValue = ToggleSettings.CurrentValue
 
 				local Success, Response = pcall(function()
 					ToggleSettings.Callback(ToggleSettings.CurrentValue)
@@ -3949,7 +3949,7 @@ function Luna:CreateWindow(WindowSettings)
 				Toggle.Visible = false
 				Toggle:Destroy()
 			end
-			
+
 			LunaUI.ThemeRemote:GetPropertyChangedSignal("Value"):Connect(function()
 				Toggle.toggle.color.Color = Luna.ThemeGradient
 				Toggle.toggle.UIStroke.color.Color = Luna.ThemeGradient
@@ -4374,7 +4374,7 @@ function Luna:CreateWindow(WindowSettings)
 				end, -- 52
 			}, InputSettings or {})
 
-            InputV.CurrentValue = InputSettings.CurrentValue
+			InputV.CurrentValue = InputSettings.CurrentValue
 
 			local descriptionbool
 			if InputSettings.Description ~= nil and InputSettings.Description ~= "" then
@@ -4539,7 +4539,7 @@ function Luna:CreateWindow(WindowSettings)
 				end,
 			}, DropdownSettings or {})
 
-            DropdownV.CurrentOption = DropdownSettings.CurrentOption
+			DropdownV.CurrentOption = DropdownSettings.CurrentOption
 
 			local descriptionbool = false
 			if DropdownSettings.Description ~= nil and DropdownSettings.Description ~= "" then
@@ -4644,7 +4644,7 @@ function Luna:CreateWindow(WindowSettings)
 						else
 							DropdownSettings.CurrentOption = {v}
 							bleh = v
-                            DropdownV.CurrentOption = bleh
+							DropdownV.CurrentOption = bleh
 						end
 
 						SafeCallback(bleh, function()
@@ -4849,11 +4849,11 @@ function Luna:CreateWindow(WindowSettings)
 				end
 			}, ColorPickerSettings or {})
 
-            local function Color3ToHex(color)
-                return string.format("#%02X%02X%02X", math.floor(color.R * 255), math.floor(color.G * 255), math.floor(color.B * 255))
-            end
-            
-            ColorPickerV.Color = Color3ToHex(ColorPickerSettings.Color)
+			local function Color3ToHex(color)
+				return string.format("#%02X%02X%02X", math.floor(color.R * 255), math.floor(color.G * 255), math.floor(color.B * 255))
+			end
+
+			ColorPickerV.Color = Color3ToHex(ColorPickerSettings.Color)
 
 			local closedsize = UDim2.new(0, 75, 0, 22)
 			local openedsize = UDim2.new(0, 219, 0, 129)
@@ -5026,7 +5026,7 @@ function Luna:CreateWindow(WindowSettings)
 					ColorPicker.HexInput.InputBox.Text = string.format("#%02X%02X%02X",color.R*0xFF,color.G*0xFF,color.B*0xFF)
 					SafeCallback(Color3.fromRGB(r,g,b))
 					ColorPickerSettings.Color = Color3.fromRGB(r,g,b)
-					ColorPickerV.Color = Color3ToHex(ColorPickerSettings.Color)
+					ColorPickerV.Color = ColorPickerSettings.Color
 				end
 				if sliderDragging then 
 					local localX = math.clamp(mouse.X-Slider.AbsolutePosition.X,0,Slider.AbsoluteSize.X)
@@ -5044,7 +5044,7 @@ function Luna:CreateWindow(WindowSettings)
 					ColorPicker.HexInput.InputBox.Text = string.format("#%02X%02X%02X",color.R*0xFF,color.G*0xFF,color.B*0xFF)
 					SafeCallback(Color3.fromRGB(r,g,b))
 					ColorPickerSettings.Color = Color3.fromRGB(r,g,b)
-					ColorPickerV.Color = Color3ToHex(ColorPickerSettings.Color)
+					ColorPickerV.Color = ColorPickerSettings.Color
 				end
 			end)
 
@@ -5067,7 +5067,7 @@ function Luna:CreateWindow(WindowSettings)
 				setDisplay(h,s,v)
 				SafeCallback(Color3.fromRGB(r,g,b))
 
-                ColorPickerV.Color = Color3ToHex(ColorPickerSettings.Color)
+				ColorPickerV.Color = ColorPickerSettings.Color
 			end
 
 			function ColorPickerV:Destroy()
@@ -5077,7 +5077,7 @@ function Luna:CreateWindow(WindowSettings)
 			if Flag then
 				Luna.Options[Flag] = ColorPickerV
 			end
-			
+
 			SafeCallback(ColorPickerSettings.Color)
 
 			return ColorPickerV
@@ -5093,7 +5093,7 @@ function Luna:CreateWindow(WindowSettings)
 			local inputPath = nil
 			local selectedConfig = nil
 
-            local Title = Elements.Template.Title:Clone()
+			local Title = Elements.Template.Title:Clone()
 			Title.Text = "Configurations"
 			Title.Visible = true
 			Title.Parent = TabPage
@@ -5114,9 +5114,9 @@ function Luna:CreateWindow(WindowSettings)
 					inputPath = input
 				end,
 			})
-			
+
 			local configSelection
-			
+
 			Tab:CreateButton({
 				Name = "Create Config",
 				Description = "Create a config with all of your current settings.",
@@ -5245,7 +5245,7 @@ function Luna:CreateWindow(WindowSettings)
 				Title = "Current Auto Load",
 				Text = "None"
 			})
-			
+
 			Tab:CreateButton({
 				Name = "Delete Autoload",
 				Description = "Delete The Autoload File",
@@ -5270,16 +5270,16 @@ function Luna:CreateWindow(WindowSettings)
 		end
 
 		function Tab:BuildThemeSection()
-			
+
 			local Title = Elements.Template.Title:Clone()
 			Title.Text = "Theming"
 			Title.Visible = true
 			Title.Parent = TabPage
 			Title.TextTransparency = 1
 			TweenService:Create(Title, TweenInfo.new(0.4, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-			
+
 			Tab:CreateSection("Custom Editor")
-			
+
 			local c1cp = Tab:CreateColorPicker({
 				Name = "Color 1",
 				Color = Color3.fromRGB(117, 164, 206),
@@ -5289,36 +5289,55 @@ function Luna:CreateWindow(WindowSettings)
 				Name = "Color 2",
 				Color = Color3.fromRGB(123, 201, 201),
 			}, "LunaInterfaceSuitePrebuiltCPC2")
-			
+
 			local c3cp = Tab:CreateColorPicker({
 				Name = "Color 3",
 				Color = Color3.fromRGB(224, 138, 184),
 			}, "LunaInterfaceSuitePrebuiltCPC3")
-			
-			
+
+			task.wait(1)
+
 			c1cp:Set({
 				Callback = function(Value)
-					Luna.ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Value), ColorSequenceKeypoint.new(0.50, c2cp.Color or Color3.fromRGB(255,255,255)), ColorSequenceKeypoint.new(1.00, c3cp.Color or Color3.fromRGB(255,255,255))}
-					LunaUI.ThemeRemote.Value = not LunaUI.ThemeRemote.Value
+					print(Value)
+					print(Luna.ThemeGradient)
+					if c2cp and c3cp then
+						print(Value)
+						print(Luna.ThemeGradient)
+						Luna.ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Value), ColorSequenceKeypoint.new(0.50, c2cp.Color or Color3.fromRGB(255,255,255)), ColorSequenceKeypoint.new(1.00, c3cp.Color or Color3.fromRGB(255,255,255))}
+						LunaUI.ThemeRemote.Value = not LunaUI.ThemeRemote.Value
+					end
 				end
 			})
-			
+
 			c2cp:Set({
 				Callback = function(Value)
-					Luna.ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, c1cp.Color or Color3.fromRGB(255,255,255)), ColorSequenceKeypoint.new(0.50, Value), ColorSequenceKeypoint.new(1.00, c3cp.Color or Color3.fromRGB(255,255,255))}
-					LunaUI.ThemeRemote.Value = not LunaUI.ThemeRemote.Value
+					print(Value)
+					print(Luna.ThemeGradient)
+					if c1cp and c3cp then
+						print(Value)
+						print(Luna.ThemeGradient)
+						Luna.ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, c1cp.Color or Color3.fromRGB(255,255,255)), ColorSequenceKeypoint.new(0.50, Value), ColorSequenceKeypoint.new(1.00, c3cp.Color or Color3.fromRGB(255,255,255))}
+						LunaUI.ThemeRemote.Value = not LunaUI.ThemeRemote.Value
+					end
 				end
 			})
-			
+
 			c3cp:Set({
 				Callback = function(Valuex)
-					Luna.ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, c1cp.Color or Color3.fromRGB(255,255,255)), ColorSequenceKeypoint.new(0.50, c2cp.Color or Color3.fromRGB(255,255,255)), ColorSequenceKeypoint.new(1.00, Valuex)}
-					LunaUI.ThemeRemote.Value = not LunaUI.ThemeRemote.Value
+					print(Valuex)
+					print(Luna.ThemeGradient)
+					if c2cp and c1cp then
+						print(Valuex)
+						print(Luna.ThemeGradient)
+						Luna.ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, c1cp.Color or Color3.fromRGB(255,255,255)), ColorSequenceKeypoint.new(0.50, c2cp.Color or Color3.fromRGB(255,255,255)), ColorSequenceKeypoint.new(1.00, Valuex)}
+						LunaUI.ThemeRemote.Value = not LunaUI.ThemeRemote.Value
+					end
 				end
 			})
-			
+
 			Tab:CreateSection("Preset Gradients")
-			
+
 			for i,v in pairs(PresetGradients) do
 				Tab:CreateButton({
 					Name = tostring(i),
@@ -5329,7 +5348,7 @@ function Luna:CreateWindow(WindowSettings)
 					end,
 				})
 			end
-			
+
 		end
 
 		local ClassParser = {
@@ -5383,11 +5402,11 @@ function Luna:CreateWindow(WindowSettings)
 						value = data.CurrentOption
 					}
 				end,
-                Load = function(Flag, data)
-                    if Luna.Options[Flag] and data.value then
-                        Luna.Options[Flag]:Set({ CurrentOption = data.value })
-                    end
-                end
+				Load = function(Flag, data)
+					if Luna.Options[Flag] and data.value then
+						Luna.Options[Flag]:Set({ CurrentOption = data.value })
+					end
+				end
 			},
 			["Colorpicker"] = {
 				Save = function(Flag, data)
@@ -5413,7 +5432,7 @@ function Luna:CreateWindow(WindowSettings)
 			}
 		}
 
-		
+
 
 		local function BuildFolderTree()
 			if isStudio then return "Config system unavailable." end
@@ -5430,19 +5449,19 @@ function Luna:CreateWindow(WindowSettings)
 			end
 		end
 
-        function Luna:SetFolder()
-            if isStudio then return "Config system unavailable." end
+		function Luna:SetFolder()
+			if isStudio then return "Config system unavailable." end
 
-            if WindowSettings.ConfigSettings.RootFolder ~= nil and WindowSettings.ConfigSettings.RootFolder ~= "" then
+			if WindowSettings.ConfigSettings.RootFolder ~= nil and WindowSettings.ConfigSettings.RootFolder ~= "" then
 				Luna.Folder = WindowSettings.ConfigSettings.RootFolder .. "/" .. WindowSettings.ConfigSettings.ConfigFolder
 			else
 				Luna.Folder = WindowSettings.ConfigSettings.ConfigFolder
 			end
 
-            BuildFolderTree(Luna.Folder)
-        end
-        
-        Luna:SetFolder()
+			BuildFolderTree(Luna.Folder)
+		end
+
+		Luna:SetFolder()
 
 		function Luna:SaveConfig(Path)
 			if isStudio then return "Config system unavailable." end
@@ -5547,7 +5566,7 @@ function Luna:CreateWindow(WindowSettings)
 
 	Main.Controls.Close.ImageLabel.MouseButton1Click:Connect(function()
 		Hide(Main, Window.Bind)
-        dragBar.Visible = false
+		dragBar.Visible = false
 		Window.State = false
 	end)
 	Main.Controls.Close["MouseEnter"]:Connect(function()
@@ -5562,7 +5581,7 @@ function Luna:CreateWindow(WindowSettings)
 		if Window.State then return end
 		if input.KeyCode == Window.Bind then
 			Unhide(Main, Window.CurrentTab)
-            dragBar.Visible = true
+			dragBar.Visible = true
 			Window.State = true
 		end
 	end)
@@ -5571,8 +5590,10 @@ function Luna:CreateWindow(WindowSettings)
 		Window.Size = not Window.Size
 		if Window.Size then
 			Minimize(Main)
+			dragBar.Visible = false
 		else
 			Maximise(Main)
+			dragBar.Visible = true
 		end
 	end)
 	Main.Controls.ToggleSize["MouseEnter"]:Connect(function()
@@ -5655,8 +5676,21 @@ if isStudio then
 			Icon = "sparkle",
 			ImageSource = "Material",
 			ShowTitle = true
+		}),
+		Debug = Window:CreateTab({
+			Name = "Debug",
+			Icon = "settings"
 		})
 	}
+
+	local bleh =Tabs.Debug:CreateColorPicker()
+	Tabs.Debug:CreateButton({
+		Callback = function()
+			bleh:Set({
+				Color = Color3.fromRGB(0,0,0)
+			})
+		end,
+	})
 
 	Tabs.Main:CreateSection("Section Example")
 	Tabs.Main:CreateButton({
@@ -5775,15 +5809,8 @@ if isStudio then
 		SpecialType = "Player"
 	})
 
-	Tabs.Main2:CreateColorPicker({
-		Name = "Callback Error Showcase",
-		Color = Color3.fromRGB(86, 171, 128),
-		Flag = "ColorPicker1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-		Callback = ""
-	})
-	
 	Tabs.Premium:BuildThemeSection()
-	
+
 	Window:CreateHomeTab()
 end
 
