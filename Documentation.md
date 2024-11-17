@@ -1,5 +1,5 @@
 # Introduction
-This Documentation Is Last Updated for Prerelease Beta 4.02a
+This Documentation Is Last Updated for Prerelease Beta 4.05d
 ## Why Choose Luna?
   Reliable And Stable  
   Beautful Design  
@@ -238,7 +238,7 @@ ElementName:Destroy()
 local Bind = Tab:CreateBind({
 	Name = "Bind Example",
 	Description = nil,
-	CurrentKeybind = "Q", -- Check Roblox Studio Docs For KeyCode Names
+	CurrentBind = "Q", -- Check Roblox Studio Docs For KeyCode Names
 	HoldToInteract = false, -- When true, Instead of toggling, You hold to achieve the active state of the Bind
     	Callback = function(BindState)
      	 -- The function that takes place when the keybind is pressed
