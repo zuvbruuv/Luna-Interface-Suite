@@ -22,7 +22,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 4.05a"
+local Release = "Prerelease Beta 4.05b"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -3038,7 +3038,7 @@ function Luna:CreateWindow(WindowSettings)
 		Key = {"Example Key"} -- List of keys that will be accepted by the system, please use a system like Pelican or Luarmor that provide key strings based on your HWID since putting a simple string is very easy to bypass
 	}, WindowSettings.KeySettings or {})
 
-	local Window = { Bind = Enum.KeyCode.K, CurrentTab = nil, State = true, Size = true, Settings = nil }
+	local Window = { Bind = Enum.KeyCode.K, CurrentTab = nil, State = true, Size = false, Settings = nil }
 
 	Main.Title.Text = WindowSettings.Name
 	Main.Logo.Image = "rbxassetid://" .. WindowSettings.LogoID
