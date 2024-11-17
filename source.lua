@@ -22,7 +22,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 4.04"
+local Release = "Prerelease Beta 4.05"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -5299,11 +5299,7 @@ function Luna:CreateWindow(WindowSettings)
 
 			c1cp:Set({
 				Callback = function(Value)
-					print(Value)
-					print(Luna.ThemeGradient)
 					if c2cp and c3cp then
-						print(Value)
-						print(Luna.ThemeGradient)
 						Luna.ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Value), ColorSequenceKeypoint.new(0.50, c2cp.Color or Color3.fromRGB(255,255,255)), ColorSequenceKeypoint.new(1.00, c3cp.Color or Color3.fromRGB(255,255,255))}
 						LunaUI.ThemeRemote.Value = not LunaUI.ThemeRemote.Value
 					end
@@ -5312,11 +5308,7 @@ function Luna:CreateWindow(WindowSettings)
 
 			c2cp:Set({
 				Callback = function(Value)
-					print(Value)
-					print(Luna.ThemeGradient)
 					if c1cp and c3cp then
-						print(Value)
-						print(Luna.ThemeGradient)
 						Luna.ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, c1cp.Color or Color3.fromRGB(255,255,255)), ColorSequenceKeypoint.new(0.50, Value), ColorSequenceKeypoint.new(1.00, c3cp.Color or Color3.fromRGB(255,255,255))}
 						LunaUI.ThemeRemote.Value = not LunaUI.ThemeRemote.Value
 					end
@@ -5325,11 +5317,7 @@ function Luna:CreateWindow(WindowSettings)
 
 			c3cp:Set({
 				Callback = function(Valuex)
-					print(Valuex)
-					print(Luna.ThemeGradient)
 					if c2cp and c1cp then
-						print(Valuex)
-						print(Luna.ThemeGradient)
 						Luna.ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, c1cp.Color or Color3.fromRGB(255,255,255)), ColorSequenceKeypoint.new(0.50, c2cp.Color or Color3.fromRGB(255,255,255)), ColorSequenceKeypoint.new(1.00, Valuex)}
 						LunaUI.ThemeRemote.Value = not LunaUI.ThemeRemote.Value
 					end
