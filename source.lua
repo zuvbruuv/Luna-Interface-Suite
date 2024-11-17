@@ -22,7 +22,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 4.05c"
+local Release = "Prerelease Beta 4.05d"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -2412,44 +2412,6 @@ function tween(object, goal, callback, tweenin)
 	tween:Play()
 end
 
-local SizeBleh = nil
-
-local function Hide(Window, bind)
-	SizeBleh = Window.Size
-	bind = string.split(tostring(bind), "Enum.KeyCode.")
-	bind = bind[2]
-	Luna:Notification({Title = "Interface Hidden", Content = "The interface has been hidden, you may reopen the interface by Pressing the UI Bind In Settings ("..tostring(bind)..")", Icon = "visibility_off"})
-	tween(Window, {BackgroundTransparency = 1})
-	tween(Window.Elements, {BackgroundTransparency = 1})
-	tween(Window.Line, {BackgroundTransparency = 1})
-	tween(Window.Title, {TextTransparency = 1})
-	tween(Window.Logo, {ImageTransparency = 1})
-	tween(Window.Navigation.Line, {BackgroundTransparency = 1})
-
-	for _, TopbarButton in ipairs(Window.Controls:GetChildren()) do
-		if TopbarButton.ClassName == "Frame" then
-			tween(TopbarButton, {BackgroundTransparency = 1})
-			tween(TopbarButton.UIStroke, {Transparency = 1})
-			tween(TopbarButton.ImageLabel, {ImageTransparency = 1})
-			TopbarButton.Visible = false
-		end
-	end
-	for _, tabbtn in ipairs(Window.Navigation.Tabs:GetChildren()) do
-		if tabbtn.ClassName == "Frame" and tabbtn.Name ~= "InActive Template" then
-			TweenService:Create(tabbtn, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundTransparency = 1}):Play()
-			TweenService:Create(tabbtn.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {ImageTransparency = 1}):Play()
-			TweenService:Create(tabbtn.DropShadowHolder.DropShadow, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {ImageTransparency = 1}):Play()
-			TweenService:Create(tabbtn.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
-		end
-	end
-
-	task.wait(0.28)
-	Window.Size = UDim2.new(0,0,0,0)
-	task.wait()
-	Window.Elements.Parent.Visible = false
-	Window.Visible = false
-end
-
 local function BlurModule(Frame)
 	local RunService = game:GetService('RunService')
 	local camera = workspace.CurrentCamera
@@ -2643,6 +2605,46 @@ end
 
 -- Interface Management
 local LunaUI = isStudio and script.Parent:WaitForChild("Luna UI") or game:GetObjects("rbxassetid://110222402394782")[1]
+
+local SizeBleh = nil
+
+local function Hide(Window, bind, notif)
+	SizeBleh = Window.Size
+	bind = string.split(tostring(bind), "Enum.KeyCode.")
+	bind = bind[2]
+	if notif then
+		Luna:Notification({Title = "Interface Hidden", Content = "The interface has been hidden, you may reopen the interface by Pressing the UI Bind In Settings ("..tostring(bind)..")", Icon = "visibility_off"})
+	end
+	tween(Window, {BackgroundTransparency = 1})
+	tween(Window.Elements, {BackgroundTransparency = 1})
+	tween(Window.Line, {BackgroundTransparency = 1})
+	tween(Window.Title, {TextTransparency = 1})
+	tween(Window.Logo, {ImageTransparency = 1})
+	tween(Window.Navigation.Line, {BackgroundTransparency = 1})
+
+	for _, TopbarButton in ipairs(Window.Controls:GetChildren()) do
+		if TopbarButton.ClassName == "Frame" then
+			tween(TopbarButton, {BackgroundTransparency = 1})
+			tween(TopbarButton.UIStroke, {Transparency = 1})
+			tween(TopbarButton.ImageLabel, {ImageTransparency = 1})
+			TopbarButton.Visible = false
+		end
+	end
+	for _, tabbtn in ipairs(Window.Navigation.Tabs:GetChildren()) do
+		if tabbtn.ClassName == "Frame" and tabbtn.Name ~= "InActive Template" then
+			TweenService:Create(tabbtn, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundTransparency = 1}):Play()
+			TweenService:Create(tabbtn.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {ImageTransparency = 1}):Play()
+			TweenService:Create(tabbtn.DropShadowHolder.DropShadow, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {ImageTransparency = 1}):Play()
+			TweenService:Create(tabbtn.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
+		end
+	end
+
+	task.wait(0.28)
+	Window.Size = UDim2.new(0,0,0,0)
+	task.wait()
+	Window.Elements.Parent.Visible = false
+	Window.Visible = false
+end
 
 
 if gethui then
@@ -5562,7 +5564,7 @@ function Luna:CreateWindow(WindowSettings)
 	end
 
 	Main.Controls.Close.ImageLabel.MouseButton1Click:Connect(function()
-		Hide(Main, Window.Bind)
+		Hide(Main, Window.Bind, true)
 		dragBar.Visible = false
 		Window.State = false
 	end)
