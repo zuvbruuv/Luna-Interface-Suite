@@ -5592,7 +5592,7 @@ function Luna:CreateWindow(WindowSettings)
 end
 
 
-function Luna:LoadAutoloadConfig()
+--function Luna:LoadAutoloadConfig()
 	if isfile(Luna.Folder .. "/settings/autoload.txt") then
 
 		if isStudio then return "Config system unavailable." end
@@ -5617,10 +5617,10 @@ function Luna:LoadAutoloadConfig()
 		})
 
 	end 
-end
+--end
 
 
-	Luna:LoadAutoloadConfig()
+	
 
 function Luna:Destroy()
 	Main.Visible = false
