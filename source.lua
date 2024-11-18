@@ -5615,7 +5615,7 @@ function Luna:CreateWindow(WindowSettings)
 		tween(Main.Controls.Theme.ImageLabel, {ImageColor3 = Color3.fromRGB(195,195,195)})
 	end)
 
-	Luna:LoadAutoLoadConfig()
+	Luna:LoadAutoloadConfig()
 
 	return Window
 end
