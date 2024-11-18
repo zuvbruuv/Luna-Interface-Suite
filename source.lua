@@ -5421,20 +5421,6 @@ function Luna:CreateWindow(WindowSettings)
 			end
 		end
 
-		function Luna:SetFolder()
-			if isStudio then return "Config system unavailable." end
-
-			if WindowSettings.ConfigSettings.RootFolder ~= nil and WindowSettings.ConfigSettings.RootFolder ~= "" then
-				Luna.Folder = WindowSettings.ConfigSettings.RootFolder .. "/" .. WindowSettings.ConfigSettings.ConfigFolder
-			else
-				Luna.Folder = WindowSettings.ConfigSettings.ConfigFolder
-			end
-
-			BuildFolderTree(Luna.Folder)
-		end
-
-		Luna:SetFolder()
-
 		function Luna:SaveConfig(Path)
 			if isStudio then return "Config system unavailable." end
 
@@ -5588,12 +5574,16 @@ function Luna:CreateWindow(WindowSettings)
 		tween(Main.Controls.Theme.ImageLabel, {ImageColor3 = Color3.fromRGB(195,195,195)})
 	end)
 
-	return Window
-end
 
+			if isStudio then return "Config system unavailable." end
 
---function Luna:LoadAutoloadConfig()
-	if isfile(Luna.Folder .. "/settings/autoload.txt") then
+			if WindowSettings.ConfigSettings.RootFolder ~= nil and WindowSettings.ConfigSettings.RootFolder ~= "" then
+				Luna.Folder = WindowSettings.ConfigSettings.RootFolder .. "/" .. WindowSettings.ConfigSettings.ConfigFolder
+			else
+				Luna.Folder = WindowSettings.ConfigSettings.ConfigFolder
+			end
+
+			if isfile(Luna.Folder .. "/settings/autoload.txt") then
 
 		if isStudio then return "Config system unavailable." end
 
@@ -5617,6 +5607,13 @@ end
 		})
 
 	end 
+
+	return Window
+end
+
+
+--function Luna:LoadAutoloadConfig()
+	
 --end
 
 
