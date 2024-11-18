@@ -22,7 +22,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 4.06c"
+local Release = "Prerelease Beta 4.06d"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -5252,7 +5252,7 @@ function Luna:CreateWindow(WindowSettings)
 				loadlabel:Set( { Text = "Current autoload config: " .. name })
 			end     
 
-			pcall( Luna:LoadAutoloadConfig() )
+			Luna:LoadAutoloadConfig()
 		end
 
 		local ClassParser = {
