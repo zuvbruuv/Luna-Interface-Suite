@@ -37,7 +37,7 @@ local Camera = workspace.CurrentCamera
 local CoreGui = game:GetService("CoreGui")
 
 local isStudio
-local website = "github.com/Nebula-Softworks"
+local website = "github.com/Nebula-Softworks/Luna-Interface-Suite"
 
 -- Credits To Tarmac And qweery for Lucide And Material Icons Respectively.
 local IconModule = {
