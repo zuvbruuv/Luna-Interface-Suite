@@ -22,7 +22,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 4.06b1"
+local Release = "Prerelease Beta 4.06c"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -37,7 +37,7 @@ local Camera = workspace.CurrentCamera
 local CoreGui = game:GetService("CoreGui")
 
 local isStudio
-local website = "github.com/Nebula-Softworks/Luna-Interface-Suite"
+local website = "github.com/Nebula-Softworks"
 
 -- Credits To Tarmac And qweery for Lucide And Material Icons Respectively.
 local IconModule = {
@@ -5315,17 +5315,27 @@ function Luna:CreateWindow(WindowSettings)
 			-- buggy as hell stil
 			["Colorpicker"] = {
 				Save = function(Flag, data)
+					local function Color3ToHex(color)
+						return string.format("#%02X%02X%02X", math.floor(color.R * 255), math.floor(color.G * 255), math.floor(color.B * 255))
+					end
+
 					return {
 						type = "Colorpicker", 
 						flag = Flag, 
-						Color = data.Color or Color3.fromRGB(255,255,255),
+						color = Color3ToHex(data.Color) or nil,
+						alpha = data.Alpha
 					}
 				end,
 				Load = function(Flag, data)
+					local function HexToColor3(hex)
+						local r = tonumber(hex:sub(2, 3), 16) / 255
+						local g = tonumber(hex:sub(4, 5), 16) / 255
+						local b = tonumber(hex:sub(6, 7), 16) / 255
+						return Color3.new(r, g, b)
+					end
 
-					if Luna.Options[Flag] and data.Color then
-						local color = data.Color or Color3.fromRGB(255,255,255)
-						Luna.Options[Flag]:Set({ Color = color }) 
+					if Luna.Options[Flag] and data.color then
+						Luna.Options[Flag]:Set({Color = HexToColor3(data.color)})
 					end
 				end
 			}
