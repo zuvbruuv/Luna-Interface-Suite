@@ -1,5 +1,5 @@
 # Introduction
-This Documentation Is Last Updated for Prerelease Beta 4.05d
+This Documentation Is Last Updated for Prerelease Beta 4.06f
 ## Why Choose Luna?
   Reliable And Stable  
   Beautful Design  
@@ -306,20 +306,6 @@ ElementName:Destroy()
 
 ## Finishing Your Script and Extras  
 
-### Finishing Your Script
-
-#### Setting Up Configuration Tab
-Create the config section that uses our Flag System Technology to save your configurations
-```lua
-Tab:BuildConfigSection() -- Tab Should be the name of the tab you are adding this section to.
-```
-
-#### Setting Up Theming
-As Of Beta 4, Luna has implemented theming. Users may change the accent of the Interface using Color Pickers or Using Preset Colors handpicked by Nebula Softworks
-```lua
-Tab:BuildThemeSection() -- Tab Should be the name of the tab you are adding this section to.
-```
-
 ### Adding A Home Tab.
 As Of Beta 4, Luna has implemented a Premade Home tab with a information dashboard similar to Sirius and Eclipse Hub.
 ```lua
@@ -328,6 +314,22 @@ Window:CreateHomeTab({
 	DiscordInvite = "1234", -- The Discord Invite Link. Do Not Include discord.gg/ | Only Include the code.
 	Icon = 1, -- By Default, The Icon Is The Home Icon. If You would like to change it to dashboard, replace the interger with 2
 })
+```
+
+### Finishing Your Script
+
+#### Setting Up Theming
+As Of Beta 4, Luna has implemented theming. Users may change the accent of the Interface using Color Pickers or Using Preset Colors handpicked by Nebula Softworks
+```lua
+Tab:BuildThemeSection() -- Tab Should be the name of the tab you are adding this section to.
+```
+
+#### Setting Up Configuration Tab
+Create the config section that uses our Flag System Technology to save your configurations
+> [!WARNING]
+> Until Future Releases, The Config Section Must Be Placed At The VERY BOTTOM of your ENTIRE script for Autoload to work.
+```lua
+Tab:BuildConfigSection() -- Tab Should be the name of the tab you are adding this section to.
 ```
 
 ### Credits
