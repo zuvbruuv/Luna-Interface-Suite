@@ -22,7 +22,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 4.05e"
+local Release = "Prerelease Beta 4.06"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -2461,7 +2461,7 @@ local function BlurModule(Frame)
 		local acos, max, pi, sqrt = math.acos, math.max, math.pi, math.sqrt
 		local sz = 0.22
 		local function DrawTriangle(v1, v2, v3, p0, p1) -- I think Stravant wrote this function
-		
+
 			local s1 = (v1 - v2).magnitude
 			local s2 = (v2 - v3).magnitude
 			local s3 = (v3 - v1).magnitude
@@ -2519,7 +2519,7 @@ local function BlurModule(Frame)
 			end
 			p0.WedgeMesh.Scale = Vector3.new(0, perp/sz, para/sz)
 			p0.CFrame = cf0
-			
+
 			if not p1 then
 				p1 = p0:clone()
 			end
@@ -2556,47 +2556,47 @@ local function BlurModule(Frame)
 	end
 
 	local function UpdateOrientation(fetchProps)
-			local properties = {
-				Transparency = 0.98;
-				BrickColor = BrickColor.new('Institutional white');
-			}
-			local zIndex = 1 - 0.05*frame.ZIndex
+		local properties = {
+			Transparency = 0.98;
+			BrickColor = BrickColor.new('Institutional white');
+		}
+		local zIndex = 1 - 0.05*frame.ZIndex
 
-			local tl, br = frame.AbsolutePosition, frame.AbsolutePosition + frame.AbsoluteSize
-			local tr, bl = Vector2.new(br.x, tl.y), Vector2.new(tl.x, br.y)
-			do
-				local rot = 0;
-				for _, v in ipairs(parents) do
-					rot = rot + v.Rotation
-				end
-				if rot ~= 0 and rot%180 ~= 0 then
-					local mid = tl:lerp(br, 0.5)
-					local s, c = math.sin(math.rad(rot)), math.cos(math.rad(rot))
-					local vec = tl
-					tl = Vector2.new(c*(tl.x - mid.x) - s*(tl.y - mid.y), s*(tl.x - mid.x) + c*(tl.y - mid.y)) + mid
-					tr = Vector2.new(c*(tr.x - mid.x) - s*(tr.y - mid.y), s*(tr.x - mid.x) + c*(tr.y - mid.y)) + mid
-					bl = Vector2.new(c*(bl.x - mid.x) - s*(bl.y - mid.y), s*(bl.x - mid.x) + c*(bl.y - mid.y)) + mid
-					br = Vector2.new(c*(br.x - mid.x) - s*(br.y - mid.y), s*(br.x - mid.x) + c*(br.y - mid.y)) + mid
-				end
+		local tl, br = frame.AbsolutePosition, frame.AbsolutePosition + frame.AbsoluteSize
+		local tr, bl = Vector2.new(br.x, tl.y), Vector2.new(tl.x, br.y)
+		do
+			local rot = 0;
+			for _, v in ipairs(parents) do
+				rot = rot + v.Rotation
 			end
-			DrawQuad(
-				camera:ScreenPointToRay(tl.x, tl.y, zIndex).Origin, 
-				camera:ScreenPointToRay(tr.x, tr.y, zIndex).Origin, 
-				camera:ScreenPointToRay(bl.x, bl.y, zIndex).Origin, 
-				camera:ScreenPointToRay(br.x, br.y, zIndex).Origin, 
-				parts
-			)
-			if fetchProps then
+			if rot ~= 0 and rot%180 ~= 0 then
+				local mid = tl:lerp(br, 0.5)
+				local s, c = math.sin(math.rad(rot)), math.cos(math.rad(rot))
+				local vec = tl
+				tl = Vector2.new(c*(tl.x - mid.x) - s*(tl.y - mid.y), s*(tl.x - mid.x) + c*(tl.y - mid.y)) + mid
+				tr = Vector2.new(c*(tr.x - mid.x) - s*(tr.y - mid.y), s*(tr.x - mid.x) + c*(tr.y - mid.y)) + mid
+				bl = Vector2.new(c*(bl.x - mid.x) - s*(bl.y - mid.y), s*(bl.x - mid.x) + c*(bl.y - mid.y)) + mid
+				br = Vector2.new(c*(br.x - mid.x) - s*(br.y - mid.y), s*(br.x - mid.x) + c*(br.y - mid.y)) + mid
+			end
+		end
+		DrawQuad(
+			camera:ScreenPointToRay(tl.x, tl.y, zIndex).Origin, 
+			camera:ScreenPointToRay(tr.x, tr.y, zIndex).Origin, 
+			camera:ScreenPointToRay(bl.x, bl.y, zIndex).Origin, 
+			camera:ScreenPointToRay(br.x, br.y, zIndex).Origin, 
+			parts
+		)
+		if fetchProps then
+			for _, pt in pairs(parts) do
+				pt.Parent = f
+			end
+			for propName, propValue in pairs(properties) do
 				for _, pt in pairs(parts) do
-					pt.Parent = f
-				end
-				for propName, propValue in pairs(properties) do
-					for _, pt in pairs(parts) do
-						pt[propName] = propValue
-					end
+					pt[propName] = propValue
 				end
 			end
-		
+		end
+
 	end
 
 	UpdateOrientation(true)
@@ -5328,8 +5328,8 @@ function Luna:CreateWindow(WindowSettings)
 						return Color3.fromRGB(r, g, b)
 					end
 
-					if Luna.Options[Flag] and data.color then
-						local color = HexToColor3(data.color)
+					if Luna.Options[Flag] and data.Color then
+						local color = HexToColor3(data.Color)
 						Luna.Options[Flag]:Set({ Color = color }) 
 					end
 				end
@@ -5424,7 +5424,7 @@ function Luna:CreateWindow(WindowSettings)
 		end
 
 		local function SetFolder()
-			
+
 			if isStudio then return "Config system unavailable." end
 
 			if WindowSettings.ConfigSettings.RootFolder ~= nil and WindowSettings.ConfigSettings.RootFolder ~= "" then
@@ -5494,11 +5494,11 @@ function Luna:CreateWindow(WindowSettings)
 		function Luna:LoadAutoloadConfig()
 			if isfile(Luna.Folder .. "/settings/autoload.txt") then
 
-			if isStudio then return "Config system unavailable." end
+				if isStudio then return "Config system unavailable." end
 
-			local name = readfile(Luna.Folder .. "/settings/autoload.txt")
+				local name = readfile(Luna.Folder .. "/settings/autoload.txt")
 
-			local success, err = Luna:LoadConfig(name)
+				local success, err = Luna:LoadConfig(name)
 				if not success then
 					return Luna:Notification({
 						Title = "Interface",
@@ -5619,7 +5619,7 @@ function Luna:CreateWindow(WindowSettings)
 
 	return Window
 end
-	
+
 function Luna:Destroy()
 	Main.Visible = false
 	for _, Notification in ipairs(Notifications:GetChildren()) do
