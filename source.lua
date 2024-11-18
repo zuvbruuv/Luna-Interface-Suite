@@ -2604,7 +2604,7 @@ local function BlurModule(Frame)
 end
 
 -- Interface Management
-local LunaUI = isStudio and script.Parent:WaitForChild("Luna UI") or game:GetObjects("rbxassetid://110222402394782")[1]
+local LunaUI = isStudio and script.Parent:WaitForChild("Luna UI") or game:GetObjects("rbxassetid://86467455075715")[1]
 
 local SizeBleh = nil
 
@@ -4598,7 +4598,7 @@ function Luna:CreateWindow(WindowSettings)
 				end
 
 				Toggle()
-				tween(Dropdown.List[name], {BackgroundTransparency = 0.95, TextColor3 = Color3.fromRGB(227,227,227)})
+				tween(Dropdown.List[name], {BackgroundTransparency = 0.95, TextColor3 = Color3.fromRGB(240,240,240)})
 				tween(Dropdown.List[name].UIStroke, {Color = Color3.fromRGB(200,200,200)})
 			end
 
@@ -4659,8 +4659,7 @@ function Luna:CreateWindow(WindowSettings)
 						if Option.BackgroundTransparency == 0.95 then
 							return
 						else
-							Option.TextColor3 = Color3.fromRGB(240,240,240)
-							Option.UIStroke.Color = Color3.fromRGB(120,120,120)
+							tween(Option, {TextColor3 = Color3.fromRGB(240,240,240)})
 						end
 					end)
 					Option.MouseLeave:Connect(function()
@@ -4668,8 +4667,7 @@ function Luna:CreateWindow(WindowSettings)
 						if Option.BackgroundTransparency == 0.95 then
 							return
 						else
-							Option.TextColor3 = Color3.fromRGB(200,200,200)
-							Option.UIStroke.Color = Color3.fromRGB(51,46,58)
+							tween(Option. {TextColor3 = Color3.fromRGB(200,200,200)})
 						end
 					end)	
 				end
