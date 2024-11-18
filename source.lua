@@ -22,7 +22,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 4.06a"
+local Release = "Prerelease Beta 4.06ab"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -5318,13 +5318,13 @@ function Luna:CreateWindow(WindowSettings)
 					return {
 						type = "Colorpicker", 
 						flag = Flag, 
-						color = data.Color or nil,
+						color = data.Color or Color3.fromRGB(255,255,255),
 					}
 				end,
 				Load = function(Flag, data)
 
 					if Luna.Options[Flag] and data.Color then
-						local color = data.Color
+						local color = data.Color or Color3.fromRGB(255,255,255)
 						Luna.Options[Flag]:Set({ Color = color }) 
 					end
 				end
