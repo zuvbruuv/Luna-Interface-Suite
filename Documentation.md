@@ -1,5 +1,5 @@
 # Introduction
-This Documentation Is Last Updated for Prerelease Beta 4.06f
+This Documentation Is Last Updated for Prerelease Beta 4.1
 ## Why Choose Luna?
   Reliable And Stable  
   Beautful Design  
@@ -226,6 +226,7 @@ ElementName:Destroy()
 ### Binding Keys
 > [!NOTE]
 > While using :CreateKeybind() is fine, it is superseded by :CreateBind() and shouldn't be used for future work as it won't receive updates.
+> (eg. CreateKeybind doesnt have OnChangedCallback)
 
 #### Creating A Keybind
 ```lua
@@ -237,9 +238,31 @@ local Bind = Tab:CreateBind({
     	Callback = function(BindState)
      	 -- The function that takes place when the keybind is pressed
      	 -- The variable (BindState) is a boolean for whether the Bind is being held or not (HoldToInteract needs to be true) OR it is whether the Bind is active
-    	end
+    	end,
+
+	OnChangedCallback = function(Bind)
+	 -- The function that takes place when the binded key changes
+	 -- The variable (Bind) is a Enum.KeyCode for the new Binded Key
+	end,
 }, "Bind") -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 ```  
+
+#### Changing The Window Keybind Using Luna's Binded Keys
+```lua
+local Bind = Tab:CreateBind({
+	Name = "Luna Interface Bind",
+	Description = nil,
+	CurrentBind = "K", -- Check Roblox Studio Docs For KeyCode Names
+	HoldToInteract = false, -- When true, Instead of toggling, You hold to achieve the active state of the Bind
+    	Callback = function()
+    	end,
+
+	OnChangedCallback = function(Bind)
+	 Window.Bind = Bind
+	end,
+}, "WindowMenuBind") -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+```
+
 #### Updating Binded Keys
 Updating Binded Keys Is The Same As Updating Other Elements  
 To Access An Element's Values, you can simply do:  
