@@ -9,7 +9,9 @@ This Documentation Is Last Updated for Prerelease Beta 4.06f
   
 *Now Let's Get Started, Shall We?*
 
-**Also hope shlex will add this docs.sirius.menu but its fine here lol**
+**Also hope shlex will add this docs.sirius.menu but its fine here lol**  
+
+***You may use the github MD Sidebar to navigate through the documentation***
 
 
 # Documentation For Luna
