@@ -5251,6 +5251,8 @@ function Luna:CreateWindow(WindowSettings)
 				local name = readfile(Luna.Folder .. "/settings/autoload.txt")
 				loadlabel:Set( { Text = "Current autoload config: " .. name })
 			end     
+
+			pcall( Luna:LoadAutoloadConfig() )
 		end
 
 		local ClassParser = {
@@ -5421,6 +5423,21 @@ function Luna:CreateWindow(WindowSettings)
 			end
 		end
 
+		local function SetFolder()
+			
+			if isStudio then return "Config system unavailable." end
+
+			if WindowSettings.ConfigSettings.RootFolder ~= nil and WindowSettings.ConfigSettings.RootFolder ~= "" then
+				Luna.Folder = WindowSettings.ConfigSettings.RootFolder .. "/" .. WindowSettings.ConfigSettings.ConfigFolder
+			else
+				Luna.Folder = WindowSettings.ConfigSettings.ConfigFolder
+			end
+
+			BuildFolderTree()
+		end
+
+		SetFolder()
+
 		function Luna:SaveConfig(Path)
 			if isStudio then return "Config system unavailable." end
 
@@ -5474,6 +5491,32 @@ function Luna:CreateWindow(WindowSettings)
 			return true
 		end
 
+		function Luna:LoadAutoloadConfig()
+			if isfile(Luna.Folder .. "/settings/autoload.txt") then
+
+			if isStudio then return "Config system unavailable." end
+
+			local name = readfile(Luna.Folder .. "/settings/autoload.txt")
+
+			local success, err = Luna:LoadConfig(name)
+				if not success then
+					return Luna:Notification({
+						Title = "Interface",
+						Icon = "sparkle",
+						ImageSource = "Material",
+						Content = "Failed to load autoload config: " .. err,
+					})
+				end
+
+				Luna:Notification({
+					Title = "Interface",
+					Icon = "sparkle",
+					ImageSource = "Material",
+					Content = string.format("Auto loaded config %q", name),
+				})
+
+			end 
+		end
 
 		function Luna:RefreshConfigList()
 			if isStudio then return "Config system unavailable." end
@@ -5572,53 +5615,11 @@ function Luna:CreateWindow(WindowSettings)
 	end)
 	Main.Controls.Theme["MouseLeave"]:Connect(function()
 		tween(Main.Controls.Theme.ImageLabel, {ImageColor3 = Color3.fromRGB(195,195,195)})
-	end)
-
-
-			if isStudio then return "Config system unavailable." end
-
-			if WindowSettings.ConfigSettings.RootFolder ~= nil and WindowSettings.ConfigSettings.RootFolder ~= "" then
-				Luna.Folder = WindowSettings.ConfigSettings.RootFolder .. "/" .. WindowSettings.ConfigSettings.ConfigFolder
-			else
-				Luna.Folder = WindowSettings.ConfigSettings.ConfigFolder
-			end
-
-			if isfile(Luna.Folder .. "/settings/autoload.txt") then
-
-		if isStudio then return "Config system unavailable." end
-
-		local name = readfile(Luna.Folder .. "/settings/autoload.txt")
-
-		local success, err = Luna:LoadConfig(name)
-		if not success then
-			return Luna:Notification({
-				Title = "Interface",
-				Icon = "sparkle",
-				ImageSource = "Material",
-				Content = "Failed to load autoload config: " .. err,
-			})
-		end
-
-		Luna:Notification({
-			Title = "Interface",
-			Icon = "sparkle",
-			ImageSource = "Material",
-			Content = string.format("Auto loaded config %q", name),
-		})
-
-	end 
+	end)	
 
 	return Window
 end
-
-
---function Luna:LoadAutoloadConfig()
 	
---end
-
-
-	
-
 function Luna:Destroy()
 	Main.Visible = false
 	for _, Notification in ipairs(Notifications:GetChildren()) do
