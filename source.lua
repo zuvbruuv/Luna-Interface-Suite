@@ -22,7 +22,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 5"
+local Release = "Prerelease Beta 5a"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -2618,7 +2618,8 @@ local function Hide(Window, bind, notif)
 	tween(Window, {BackgroundTransparency = 1})
 	tween(Window.Elements, {BackgroundTransparency = 1})
 	tween(Window.Line, {BackgroundTransparency = 1})
-	tween(Window.Title, {TextTransparency = 1})
+	tween(Window.Title.Title, {TextTransparency = 1})
+	tween(Window.Title.subtitle, {TextTransparency = 1})
 	tween(Window.Logo, {ImageTransparency = 1})
 	tween(Window.Navigation.Line, {BackgroundTransparency = 1})
 
@@ -2933,7 +2934,8 @@ local function Unhide(Window, currentTab)
 	tween(Window, {BackgroundTransparency = 0.2})
 	tween(Window.Elements, {BackgroundTransparency = 0.08})
 	tween(Window.Line, {BackgroundTransparency = 0})
-	tween(Window.Title, {TextTransparency = 0})
+	tween(Window.Title.Title, {TextTransparency = 0})
+	tween(Window.Title.subtitle, {TextTransparency = 0})
 	tween(Window.Logo, {ImageTransparency = 0})
 	tween(Window.Navigation.Line, {BackgroundTransparency = 0})
 
