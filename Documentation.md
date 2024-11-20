@@ -1,5 +1,5 @@
 # Introduction
-This Documentation Is Last Updated for Prerelease Beta 4.1
+This Documentation Is Last Updated for Prerelease Beta 5
 ## Why Choose Luna?
   Reliable And Stable  
   Beautful Design  
@@ -34,6 +34,7 @@ Sadly, Unlike Older Projects, Luna Can't Have Multiple Windows. But It's Fine! R
 ```lua
 local Window = Luna:CreateWindow({
 	Name = "Luna Example Window", -- This Is Title Of Your Window
+	Subtitle = nil, -- A Gray Subtitle next To the main title.
 	LogoID = "82795327169782", -- The Asset ID of your logo. Set to nil if you do not have a logo for Luna to use.
 	LoadingEnabled = true, -- Whether to enable the loading animation. Set to false if you do not want the loading screen or have your own custom one.
 	LoadingTitle = "Luna Interface Suite", -- Header for loading screen
@@ -62,6 +63,7 @@ Luna Uses Custom Icons so u do not have to find ans upload your own!
 We have 2 sources ; [Lucide](https://lucide.dev) and [Material](https://fonts.google.com/icons?icon.query=home&icon.set=Material+Icons&icon.style=Sharp).  
 Simply grab the name of your icon and paste it into the icon parameter. If you're using Lucide, replace spaces with dashes (-) and if you're on Material, replace spaces with underscores (_)  
 Make sure to change ImageSource to the source you're using.
+we did not skid this from rayfield, pretty sure rayfield skidded this from us tho.
 
 However, If you would still like to use your own custom icons, You may do so by changing the Icon value to the ID of ur image (DO NOT INCLUDE rbxassetid://) and Changing ImageSource to Custom.
 
@@ -82,9 +84,14 @@ Tab:CreateSection("Section Example")
 ```
 ##### Section Methods
 > This requires the section to be a variable first!
-```
+```lua
 Section:Set("New Section Name")
 Section:Destroy() -- Destroys the section
+```
+
+#### Creating A Divider
+```lua
+Tab:CreateDivider()
 ```
 
 #### Destroying The Interface
