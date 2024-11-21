@@ -16,7 +16,7 @@ Luna Executor | Original UI
 Extra Credits / Provided Certain Elements
 
 Inori | Configuration Concept
-Tarmac and qweery | Lucide Icons And Material Icons
+Latte Softworks and qweery | Lucide Icons And Material Icons
 kirill9655 | Loading Circle
 Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
@@ -864,7 +864,7 @@ local IconModule = {
 		["x-square"] = "rbxassetid://10747384217",
 		["zoom-in"] = "rbxassetid://10747384552",
 		["zoom-out"] = "rbxassetid://10747384679",
-	} or loadstring(game:HttpGet('https://raw.githubusercontent.com/latte-soft/lucide-roblox/refs/heads/master/lib/Icons.luau'))()["48px"],
+	} or loadstring(game:HttpGet('https://raw.githubusercontent.com/latte-soft/lucide-roblox/refs/heads/master/lib/Icons.luau'))(),
 	Material = {
 		["perm_media"] = "http://www.roblox.com/asset/?id=6031215982";
 		["sticky_note_2"] = "http://www.roblox.com/asset/?id=6031265972";
@@ -2372,12 +2372,31 @@ local function GetIcon(icon, source)
 	if source == "Custom" then
 		return "rbxassetid://" .. icon
 	elseif source == "Lucide" then
-		if icon ~= nil and IconModule[source] then
-			local sourceicon = IconModule[source]
-			return "rbxassetid://" .. tostring(sourceicon[icon][1])
-		else
-			return nil
+		-- full credit to latte softworks :)
+		local sizedicons = source['48px']
+
+		local r = sizedicons[icon]
+		if not r then
+			error("Lucide Icons: Failed to find icon by the name of \"" .. icon .. "\.", 2)
 		end
+
+		local rirs = r[2]
+		local riro = r[3]
+
+		if type(r[1]) ~= "number" or type(rirs) ~= "table" or type(riro) ~= "table" then
+			error("Lucide Icons: Internal error: Invalid auto-generated asset entry")
+		end
+
+		local irs = Vector2.new(rirs[1], rirs[2])
+		local iro = Vector2.new(riro[1], riro[2])
+
+		local asset = {
+			id = r[1],
+			imageRectSize = irs,
+			imageRectOffset = iro,
+		}
+
+		return asset
 	else	
 		if icon ~= nil and IconModule[source] then
 			local sourceicon = IconModule[source]
