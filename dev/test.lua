@@ -2373,7 +2373,10 @@ local function GetIcon(icon, source)
 		return "rbxassetid://" .. icon
 	elseif source == "Lucide" then
 		-- full credit to latte softworks :)
-		local sizedicons = source['48px']
+		local iconData = not isStudio and game:HttpGet('https://raw.githubusercontent.com/latte-soft/lucide-roblox/refs/heads/master/lib/Icons.luau')
+		local icons = not isStudio and loadstring(iconData)()
+
+		local sizedicons = icons['48px']
 
 		local r = sizedicons[icon]
 		if not r then
@@ -4003,7 +4006,7 @@ function Luna:CreateWindow(WindowSettings)
 					-- The function that takes place when the Bind is pressed
 					-- The variable (Bind) is a boolean for whether the Bind is being held or not (HoldToInteract needs to be true) or whether the Bind is currently active
 				end,
-				
+
 				OnChangedCallback = function(Bind)
 					-- The function that takes place when the binded key changes
 					-- The variable (Bind) is a Enum.KeyCode for the new Binded Key
@@ -5656,7 +5659,7 @@ function Luna:CreateWindow(WindowSettings)
 			Window.State = true
 		end
 	end)
-	
+
 	Navigation.Player.icon.ImageLabel.Image = Players:GetUserThumbnailAsync(Players.LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size48x48)
 	Navigation.Player.Namez.Text = Players.LocalPlayer.DisplayName
 	Navigation.Player.TextLabel.Text = Players.LocalPlayer.Name
