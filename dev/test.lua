@@ -2373,7 +2373,7 @@ local function GetIcon(icon, source)
 		return "rbxassetid://" .. icon
 	elseif source == "Lucide" then
 		-- full credit to latte softworks :)
-		local iconData = not isStudio and game:HttpGet('https://raw.githubusercontent.com/latte-soft/lucide-roblox/refs/heads/master/lib/Icons.luau')
+		local iconData = not isStudio and game:HttpGet("https://raw.githubusercontent.com/latte-soft/lucide-roblox/refs/heads/master/lib/Icons.luau")
 		local icons = isStudio and require(script.Parent.icons) or loadstring(iconData)()
 		icon = string.match(string.lower(icon), "^%s*(.*)%s*$") :: string
 		local sizedicons = icons['48px']
