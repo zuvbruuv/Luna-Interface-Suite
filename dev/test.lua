@@ -2371,7 +2371,14 @@ local PresetGradients = {
 local function GetIcon(icon, source)
 	if source == "Custom" then
 		return "rbxassetid://" .. icon
-	else
+	elseif source == "Lucide" then
+		if icon ~= nil and IconModule[source] then
+			local sourceicon = IconModule[source]
+			return "rbxassetid://" .. tostring(sourceicon[icon][1])
+		else
+			return nil
+		end
+	else	
 		if icon ~= nil and IconModule[source] then
 			local sourceicon = IconModule[source]
 			return sourceicon[icon]
