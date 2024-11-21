@@ -60,7 +60,7 @@ local Window = Luna:CreateWindow({
 
 #### Luna Icons
 Luna Uses Custom Icons so u do not have to find ans upload your own!
-We have 2 sources ; [Lucide]([https://lucide.dev](https://github.com/latte-soft/lucide-roblox/blob/master/md/icon-index.md)) and [Material](https://fonts.google.com/icons?icon.query=home&icon.set=Material+Icons&icon.style=Sharp).  
+We have 2 sources ; [Lucide](https://github.com/latte-soft/lucide-roblox/blob/master/md/icon-index.md) and [Material](https://fonts.google.com/icons?icon.query=home&icon.set=Material+Icons&icon.style=Sharp).  
 Simply grab the name of your icon and paste it into the icon parameter. If you're using Lucide, replace spaces with dashes (-) and if you're on Material, replace spaces with underscores (_)  
 Make sure to change ImageSource to the source you're using.
 we did not skid this from rayfield, pretty sure rayfield skidded this from us tho.
