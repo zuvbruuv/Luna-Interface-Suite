@@ -1,5 +1,5 @@
 # Introduction
-This Documentation Is Last Updated for Prerelease Beta 5
+This Documentation Is Last Updated for Prerelease Beta 5.1
 ## Why Choose Luna?
   Reliable And Stable  
   Beautful Design  
@@ -78,7 +78,7 @@ local Tab = Window:CreateTab({
 })
 ```
 #### Creating A Section
-Sections Help Organize Your Script. Ability to add Elements To Sections is coming soon
+Sections Help Organize Your Script. You May Add Any Element To A Section Like You Would On A Tab As Of Beta 5.1
 ```lua
 Tab:CreateSection("Section Example")
 ```
@@ -90,6 +90,8 @@ Section:Destroy() -- Destroys the section
 ```
 
 #### Creating A Divider
+> [!NOTE]
+> A Section divider is slightly smaller than a regular divider.
 ```lua
 Tab:CreateDivider()
 ```
