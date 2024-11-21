@@ -2604,7 +2604,7 @@ local function BlurModule(Frame)
 end
 
 -- Interface Management
-local LunaUI = isStudio and script.Parent:WaitForChild("Luna UI") or game:GetObjects("rbxassetid://86467455075715")[1]
+local LunaUI = isStudio and script.Parent:WaitForChild("Luna UI") or game:GetObjects("rbxassetid://96172544064866")[1]
 
 local SizeBleh = nil
 
