@@ -22,7 +22,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 5.1"
+local Release = "Prerelease Beta 5.2"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -4496,18 +4496,15 @@ function Luna:CreateWindow(WindowSettings)
 					end
 				end
 
-				Dropdown.Selected:GetPropertyChangedSignal("Text"):Connect(function()
-					local text = Dropdown.Selected.Text
-					for _, Item in pairs(Dropdown.List:GetChildren()) do
-						if Item.ClassName == "TextLabel" and Item.Name ~= "Template" then
-							Item.Visible = string.find(string.lower(Item.Name), text, 1, true) and true or false
-						end
-					end
-				end)
-
-				Dropdown.Selected.FocusLost:Connect(function()
-					Dropdown.Selected.Text = ""
-				end)
+                Dropdown.Selected:GetPropertyChangedSignal("Text"):Connect(function()
+                    local text = Dropdown.Selected.Text:lower()
+                    for _, Item in ipairs(Dropdown.List:GetChildren()) do
+                        if Item:IsA("TextLabel") and Item.Name ~= "Template" then
+                            Item.Visible = text == "" or string.find(Item.Name:lower(), text, 1, true) ~= nil
+                        end
+                    end
+                end)
+                
 
 				local function Clear()
 					for _, option in ipairs(Dropdown.List:GetChildren()) do
