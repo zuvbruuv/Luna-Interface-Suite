@@ -1,5 +1,5 @@
 # Introduction
-This Documentation Is Last Updated for Prerelease Beta 5.1
+This Documentation Is Last Updated for Prerelease Beta 6
 ## Why Choose Luna?
   Reliable And Stable  
   Beautful Design  
@@ -45,14 +45,13 @@ local Window = Luna:CreateWindow({
 		ConfigFolder = "Big Hub" -- The Name Of The Folder Where Luna Will Store Configs For This Script. DO NOT ADD A SLASH
 	},
 
-	KeySystem = false, -- This is still WIP and Luna Will Not use this in the current build. 
+	KeySystem = false, -- As Of Beta 6, Luna Has officially Implemented A Key System!
 	KeySettings = {
 		Title = "Luna Example Key",
 		Subtitle = "Key System",
 		Note = "Best Key System Ever! Also, Please Use A HWID Keysystem like Pelican, Luarmor etc. that provide key strings based on your HWID since putting a simple string is very easy to bypass",
-		FileName = "Key", -- the name of the key file. this will be saved in ur RootFolder. However, if you don't have one, it'll save in ur config folder instead
+		SaveInRoot = false, -- Enabling will save the key in your RootFolder (YOU MUST HAVE ONE BEFORE ENABLING THIS OPTION)
 		SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-		KeyLink = "", -- put the site where users will get your key here
 		Key = {"Example Key"} -- List of keys that will be accepted by the system, please use a system like Pelican or Luarmor that provide key strings based on your HWID since putting a simple string is very easy to bypass
 	}
 })
