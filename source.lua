@@ -6,7 +6,7 @@ by Nebula Softworks
 Main Credits
 
 Hunter (Nebula Softworks) | Designing And Programming | Main Developer
-JustHey (Nebula Softworks) | Configurations, Bug Fixing And More | Co Developer
+JustHey (Nebula Softworks) | Configurations, Bug Fixing And More! | Co Developer
 Throit | Color Picker
 Wally | Dragging And Certain Functions
 Sirius | PCall Parsing, Notifications, Slider And Home Tab
@@ -37,7 +37,7 @@ local Player = Players.LocalPlayer
 local Camera = workspace.CurrentCamera
 local CoreGui = game:GetService("CoreGui")
 
-local isStudio = true
+local isStudio
 local website = "github.com/Nebula-Softworks"
 
 if RunService:IsStudio() then
