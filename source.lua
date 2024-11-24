@@ -23,7 +23,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 6"
+local Release = "Prerelease Beta 6b"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -2280,7 +2280,7 @@ function Luna:CreateWindow(WindowSettings)
 	for i,v in pairs(Main.Controls:GetChildren()) do
 		v.Visible = false
 	end
-	
+
 	Main:GetPropertyChangedSignal("Position"):Connect(function()
 		Main.Parent.ShadowHolder.Position = Main.Position
 	end)
@@ -2318,16 +2318,18 @@ function Luna:CreateWindow(WindowSettings)
 		Draggable(Dragger, Main)
 		Draggable(LunaUI.MobileSupport, LunaUI.MobileSupport)
 		if dragBar then Draggable(dragInteract, Main, true, 255) end
-		
+
 		if not WindowSettings.KeySettings then
 			Passthrough = true
 			return
 		end
+		
+		WindowSettings.KeySettings.FileName = "key"
 
 		if typeof(WindowSettings.KeySettings.Key) == "string" then WindowSettings.KeySettings.Key = {WindowSettings.KeySettings.Key} end
-		
+
 		local direc = WindowSettings.KeySettings.SaveInRoot and "Luna/Configurations/" .. WindowSettings.ConfigSettings.RootFolder .. "/" .. WindowSettings.ConfigSettings.ConfigFolder .. "/Key System/" or "Luna/Configurations/" ..  WindowSettings.ConfigSettings.ConfigFolder .. "/Key System/"
-		
+
 		if isfile and isfile(direc .. WindowSettings.KeySettings.FileName .. ".luna") then
 			for i, Key in ipairs(WindowSettings.KeySettings.Key) do
 				if string.find(readfile(direc .. WindowSettings.KeySettings.FileName .. ".luna"), Key) then
@@ -2336,16 +2338,16 @@ function Luna:CreateWindow(WindowSettings)
 				end
 			end
 		end
-		
+
 		if not Passthrough then
 
 			local AttemptsRemaining = math.random(2, 5)
-			
+
 			KeySystem.Visible = true
 			KeySystem.Title.Text = WindowSettings.KeySettings.Title
 			KeySystem.Subtitle.Text = WindowSettings.KeySettings.Subtitle
 			KeySystem.textshit.Text = WindowSettings.KeySettings.Note
-			
+
 			KeySystem.Action.Interact.MouseButton1Click:Connect(function()
 				if #KeySystem.Input.InputBox.Text == 0 then return end
 				local KeyFound = false
@@ -2386,7 +2388,7 @@ function Luna:CreateWindow(WindowSettings)
 					end
 				else
 					if AttemptsRemaining == 0 then
-						
+
 						game.Players.LocalPlayer:Kick("No Attempts Remaining")
 						game:Shutdown()
 					end
@@ -2396,7 +2398,7 @@ function Luna:CreateWindow(WindowSettings)
 					KeySystem.Input.InputBox.Text = ""
 				end
 			end)
-			
+
 			KeySystem.Close.MouseButton1Click:Connect(function()
 				for _, instance in pairs(KeySystem:GetDescendants()) do
 					if instance.ClassName ~= "UICorner" and instance.ClassName ~= "UIPadding" then
@@ -2415,13 +2417,13 @@ function Luna:CreateWindow(WindowSettings)
 					end
 				end
 				Hide(Main, Window.Bind, false)
-				
+
 				task.wait(3)
 				Luna:Destroy()
 			end)
 		end
 	end
-	
+
 	if WindowSettings.KeySystem then
 		repeat task.wait() until Passthrough
 	end
@@ -2446,7 +2448,7 @@ function Luna:CreateWindow(WindowSettings)
 		wait(0.3)
 		TweenService:Create(LoadingFrame, TweenInfo.new(0.5, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
 	end
-	
+
 	TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {BackgroundTransparency = 0.2, Size = MainSize}):Play()
 	TweenService:Create(Main.Parent.ShadowHolder, TweenInfo.new(0.5, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Size = MainSize}):Play()
 	TweenService:Create(Main.Title.Title, TweenInfo.new(0.35, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
@@ -5584,12 +5586,12 @@ function Luna:CreateWindow(WindowSettings)
 
 			-- fixed by justhey
 			Dropdown.Selected:GetPropertyChangedSignal("Text"):Connect(function()
-					local text = Dropdown.Selected.Text:lower()
-					for _, Item in ipairs(Dropdown.List:GetChildren()) do
-						if Item:IsA("TextLabel") and Item.Name ~= "Template" then
-							Item.Visible = text == "" or string.find(Item.Name:lower(), text, 1, true) ~= nil
-						end
+				local text = Dropdown.Selected.Text:lower()
+				for _, Item in ipairs(Dropdown.List:GetChildren()) do
+					if Item:IsA("TextLabel") and Item.Name ~= "Template" then
+						Item.Visible = text == "" or string.find(Item.Name:lower(), text, 1, true) ~= nil
 					end
+				end
 			end)
 
 
@@ -5732,7 +5734,7 @@ function Luna:CreateWindow(WindowSettings)
 			else
 				DropdownSettings.CurrentOption = {}
 			end
-			
+
 			local bleh, ind = nil,0
 			for i,v in pairs(DropdownSettings.CurrentOption) do
 				ind = ind + 1
@@ -6696,6 +6698,24 @@ end
 
 if isStudio then
 	local Window = Luna:CreateWindow({
+		Name = "Nebula Client - Luna Hub | Blade Ball",
+		Subtitle = "by Nebula Softworks",
+		LogoID = "123795201100198",
+		LoadingEnabled = true,
+		LoadingTitle = "Nebula Client (Luna Hub)",
+		LoadingSubtitle = "Loading script for Blade Ball",
+		KeySystem = true,
+		KeySettings = {
+			Title = "Nebula Client | Key System",
+			Subtitle = "Blade Ball",
+			Note = "Please Enter Your Key To Use Nebula Client",
+			FileName = "Key", -- the name of the key file. this will be saved in ur RootFolder. However, if you don't have one, it'll save in ur config folder instead
+			SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+			Key = {"Example Key"} -- List of keys that will be accepted by the system, please use a system like Pelican or Luarmor that provide key strings based on your HWID since putting a simple string is very easy to bypass
+		}
+	})
+	
+	--[[local Window = Luna:CreateWindow({
 		Name = "Luna Example Window",
 		Subtitle = "Test",
 		LogoID = "6031097225",
@@ -6880,7 +6900,7 @@ if isStudio then
 	s:CreateDropdown()
 
 	Tabs.Premium:BuildConfigSection()
-	Tabs.Premium:BuildThemeSection()
+	Tabs.Premium:BuildThemeSection()]]
 end
 
 -- THIS IS THE DEBUG DEMO, ONLY USED WHEN TESTING NEW ELEMENTS AND CODE
