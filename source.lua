@@ -10,7 +10,7 @@ JustHey (Nebula Softworks) | Configurations, Bug Fixing And More! | Co Developer
 Throit | Color Picker
 Wally | Dragging And Certain Functions
 Sirius | PCall Parsing, Notifications, Slider And Home Tab
-http2 | Original UI
+Luna Executor | Original UI
 
 
 Extra Credits / Provided Certain Elements
@@ -23,7 +23,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 6b"
+local Release = "Prerelease Beta 6.1"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -2246,8 +2246,15 @@ function Luna:CreateWindow(WindowSettings)
 		Note = "No Instructions",
 		SaveInRoot = false, -- Enabling will save the key in your RootFolder (YOU MUST HAVE ONE BEFORE ENABLING THIS OPTION)
 		SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-		Key = {""} -- List of keys that will be accepted by the system, please use a system like Pelican or Luarmor that provide key strings based on your HWID since putting a simple string is very easy to bypass
+		Key = {""}, -- List of keys that will be accepted by the system, please use a system like Pelican or Luarmor that provide key strings based on your HWID since putting a simple string is very easy to bypass
+		SecondAction = {}	
 	}, WindowSettings.KeySettings or {})
+
+	WindowSettings.KeySettings.SecondAction = Kwargify({
+		Enabled = false,
+		Type = "Discord", -- Link/Discord
+		Parameter = "" -- for discord, add the invite link like home tab. for link, type the link of ur key sys
+	}, WindowSettings.KeySettings.SecondAction)
 
 	local Passthrough = false
 
@@ -2315,6 +2322,8 @@ function Luna:CreateWindow(WindowSettings)
 	BlurModule(Main)
 
 	if WindowSettings.KeySystem then
+		local KeySettings = WindowSettings.KeySettings
+		
 		Draggable(Dragger, Main)
 		Draggable(LunaUI.MobileSupport, LunaUI.MobileSupport)
 		if dragBar then Draggable(dragInteract, Main, true, 255) end
@@ -2341,6 +2350,13 @@ function Luna:CreateWindow(WindowSettings)
 
 		if not Passthrough then
 
+			local Btn = KeySystem.Action.Copy
+			local typesys = KeySettings.SecondAction.Type
+			
+			if typesys == "Discord" then
+				Btn = KeySystem.Action.Discord
+			end
+
 			local AttemptsRemaining = math.random(2, 5)
 
 			KeySystem.Visible = true
@@ -2348,7 +2364,34 @@ function Luna:CreateWindow(WindowSettings)
 			KeySystem.Subtitle.Text = WindowSettings.KeySettings.Subtitle
 			KeySystem.textshit.Text = WindowSettings.KeySettings.Note
 
-			KeySystem.Action.Interact.MouseButton1Click:Connect(function()
+			if KeySettings.SecondAction.Enabled == true then
+				Btn.Visible = true
+			end
+			
+			Btn.Interact.MouseButton1Click:Connect(function()
+				if typesys == "Discord" then
+					setclipboard(tostring("https://discord.gg/"..KeySettings.SecondAction.Parameter)) -- Hunter if you see this I added copy also was too lazy to send u msg
+					if request then
+						request({
+							Url = 'http://127.0.0.1:6463/rpc?v=1',
+							Method = 'POST',
+							Headers = {
+								['Content-Type'] = 'application/json',
+								Origin = 'https://discord.com'
+							},
+							Body = HttpService:JSONEncode({
+								cmd = 'INVITE_BROWSER',
+								nonce = HttpService:GenerateGUID(false),
+								args = {code = KeySettings.SecondAction.Parameter}
+							})
+						})
+					end
+				else
+					setclipboard(tostring(KeySettings.SecondAction.Parameter))
+				end
+			end)
+
+			KeySystem.Action.Submit.Interact.MouseButton1Click:Connect(function()
 				if #KeySystem.Input.InputBox.Text == 0 then return end
 				local KeyFound = false
 				local FoundKey = ''
@@ -6711,7 +6754,12 @@ if isStudio then
 			Note = "Please Enter Your Key To Use Nebula Client",
 			FileName = "Key", -- the name of the key file. this will be saved in ur RootFolder. However, if you don't have one, it'll save in ur config folder instead
 			SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-			Key = {"Example Key"} -- List of keys that will be accepted by the system, please use a system like Pelican or Luarmor that provide key strings based on your HWID since putting a simple string is very easy to bypass
+			Key = {"Example Key"}, -- List of keys that will be accepted by the system, please use a system like Pelican or Luarmor that provide key strings based on your HWID since putting a simple string is very easy to bypass
+			SecondAction = {
+				Enabled = true,
+				Type = "Link", -- Link/Discord
+				Parameter = "" -- for discord, add the invite link like home tab. for link, type the link of ur key sys
+			}
 		}
 	})
 	
