@@ -2443,25 +2443,7 @@ function Luna:CreateWindow(WindowSettings)
 			end)
 
 			KeySystem.Close.MouseButton1Click:Connect(function()
-				for _, instance in pairs(KeySystem:GetDescendants()) do
-					if instance.ClassName ~= "UICorner" and instance.ClassName ~= "UIPadding" then
-						if instance.ClassName ~= "UIStroke" then
-							tween(instance, {BackgroundTransparency = 1}, nil,TweenInfo.new(0.6, Enum.EasingStyle.Exponential))
-						end
-						if instance.ClassName == "ImageButton" then
-							tween(instance, {ImageTransparency = 1}, nil,TweenInfo.new(0.5, Enum.EasingStyle.Exponential))
-						end
-						if instance.ClassName == "TextLabel" then
-							tween(instance, {TextTransparency = 1}, nil,TweenInfo.new(0.4, Enum.EasingStyle.Exponential))
-						end
-						if instance.ClassName == "UIStroke" then
-							tween(instance, {Transparency = 1}, nil,TweenInfo.new(0.5, Enum.EasingStyle.Exponential))
-						end
-					end
-				end
-				Hide(Main, Window.Bind, false)
-
-				task.wait(3)
+				
 				Luna:Destroy()
 			end)
 		end
