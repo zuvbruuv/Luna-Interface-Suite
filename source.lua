@@ -2553,17 +2553,15 @@ function Luna:CreateWindow(WindowSettings)
         UICorner1.Parent = HomeTabPage.icon.ImageLabel
 
 		HomeTabPage.detailsholder.dashboard.Client.Title.Text = (isStudio and "Debugging (Studio)" or identifyexecutor()) or "Unable to identify executor."
-        if isStudio then
-            HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Luna Interface Suite - Debugging Mode"
-        else
-            local executorIndex = table.find(HomeTabSettings.SupportedExecutors, identifyexecutor())
-
-            if executorIndex then
+		for i,v in pairs(HomeTabSettings.SupportedExecutors) do
+			if isStudio then HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Luna Interface Suite - Debugging Mode" break end
+			if v == identifyexecutor() then
                 HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Your executor seems to support Therion."
+                break
             else
                 HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Your executor isn't supported with Therion."
-            end
-        end
+			end
+		end
 
 		-- Stolen From Sirius Stuff Begins Here
 
