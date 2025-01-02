@@ -1534,6 +1534,9 @@ local IconModule = {
 	}
 }
 
+local UICorner1 = Instance.new('UICorner')
+local UICorner2 = Instance.new('UICorner')
+
 -- Other Variables
 local request = (syn and syn.request) or (http and http.request) or http_request or nil
 local tweeninfo = TweenInfo.new(0.3, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out)
@@ -2283,6 +2286,7 @@ function Luna:CreateWindow(WindowSettings)
 	Navigation.Player.icon.ImageLabel.Image = Players:GetUserThumbnailAsync(Players.LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size48x48)
 	Navigation.Player.Namez.Text = Players.LocalPlayer.DisplayName
 	Navigation.Player.TextLabel.Text = Players.LocalPlayer.Name
+    UICorner2.Parent = Navigation.Player.icon.ImageLabel
 
 	for i,v in pairs(Main.Controls:GetChildren()) do
 		v.Visible = false
@@ -2546,6 +2550,7 @@ function Luna:CreateWindow(WindowSettings)
 		HomeTabPage.icon.ImageLabel.Image = Players:GetUserThumbnailAsync(Players.LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
 		HomeTabPage.player.Text.Text = "Hello, " .. Players.LocalPlayer.DisplayName
 		HomeTabPage.player.user.Text = Players.LocalPlayer.Name .. " - ".. WindowSettings.Name
+        UICorner1.Parent = HomeTabPage.icon.ImageLabel
 
 		HomeTabPage.detailsholder.dashboard.Client.Title.Text = (isStudio and "Debugging (Studio)" or identifyexecutor()) or "Your Executor Does Not Support identifyexecutor."
 		for i,v in pairs(HomeTabSettings.SupportedExecutors) do
@@ -2553,7 +2558,7 @@ function Luna:CreateWindow(WindowSettings)
 			if v == identifyexecutor() then
 				HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Your Executor Supports This Script."
 			else
-				HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Your Executor Isn't Officialy Supported By This Script."
+				HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Your Executor Isn't Supported With Therion."
 			end
 		end
 
