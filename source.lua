@@ -2281,7 +2281,7 @@ function Luna:CreateWindow(WindowSettings)
 
 	LoadingFrame.Frame.Frame.Title.Text = WindowSettings.LoadingTitle
 	LoadingFrame.Frame.Frame.Subtitle.Text = WindowSettings.LoadingSubtitle
-	LoadingFrame.Version.Text = LoadingFrame.Frame.Frame.Title.Text == "Luna Interface Suite" and Release or "Luna UI"
+	LoadingFrame.Version.Text = "Therion"
 
 	Navigation.Player.icon.ImageLabel.Image = Players:GetUserThumbnailAsync(Players.LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size48x48)
 	Navigation.Player.Namez.Text = Players.LocalPlayer.DisplayName
@@ -2553,14 +2553,16 @@ function Luna:CreateWindow(WindowSettings)
         UICorner1.Parent = HomeTabPage.icon.ImageLabel
 
 		HomeTabPage.detailsholder.dashboard.Client.Title.Text = (isStudio and "Debugging (Studio)" or identifyexecutor()) or "Your Executor Does Not Support identifyexecutor."
-		for i,v in pairs(HomeTabSettings.SupportedExecutors) do
-			if isStudio then HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Luna Interface Suite - Debugging Mode" break end
-			if v == identifyexecutor() then
-				HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Your Executor Supports This Script."
-			else
-				HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Your Executor Isn't Supported With Therion."
-			end
-		end
+        if isStudio then
+            HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Luna Interface Suite - Debugging Mode"
+        else
+            local executorIndex = table.find(HomeTabSettings.SupportedExecutors, getexecutorname())
+            if executorIndex then
+                HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Your Executor Supports Therion."
+            else
+                HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Your Executor Isn't Supported With Therion."
+            end
+        end
 
 		-- Stolen From Sirius Stuff Begins Here
 
