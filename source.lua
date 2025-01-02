@@ -2552,15 +2552,16 @@ function Luna:CreateWindow(WindowSettings)
 		HomeTabPage.player.user.Text = Players.LocalPlayer.Name .. " - ".. WindowSettings.Name
         UICorner1.Parent = HomeTabPage.icon.ImageLabel
 
-		HomeTabPage.detailsholder.dashboard.Client.Title.Text = (isStudio and "Debugging (Studio)" or identifyexecutor()) or "Your Executor Does Not Support identifyexecutor."
+		HomeTabPage.detailsholder.dashboard.Client.Title.Text = (isStudio and "Debugging (Studio)" or identifyexecutor()) or "Unable to identify executor."
         if isStudio then
             HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Luna Interface Suite - Debugging Mode"
         else
-            local executorIndex = table.find(HomeTabSettings.SupportedExecutors, getexecutorname())
+            local executorIndex = table.find(HomeTabSettings.SupportedExecutors, identifyexecutor())
+
             if executorIndex then
-                HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Your Executor Supports Therion."
+                HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Your executor seems to support Therion."
             else
-                HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Your Executor Isn't Supported With Therion."
+                HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Your executor isn't supported with Therion."
             end
         end
 
